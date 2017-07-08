@@ -17,4 +17,8 @@ $warn-light:    map-get($theme-light, warn-light);
     md-ink-bar {
         background-color: mat-color($accent) !important;
     }
+    md-icon.md-icon-logo.mat-icon {
+        width: 125px !important;
+    }
+
 }

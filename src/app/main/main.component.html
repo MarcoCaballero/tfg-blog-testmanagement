@@ -1,5 +1,5 @@
 <td-layout #layout>
-  <td-navigation-drawer logo="assets:covalent" sidenavTitle="Quickstart" name="Firstname Lastname" email="firstname.lastname@company.com">
+  <td-navigation-drawer logo="assets:testmanagement-accent" sidenavTitle="Quickstart" name="Firstname Lastname" email="firstname.lastname@company.com">
     <md-nav-list>
       <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
         <a md-list-item [routerLink]="[item.route]" (click)="layout.close()">
@@ -13,7 +13,7 @@
   </td-navigation-drawer>
 
 
-  <td-layout-nav logo="assets:covalent">
+  <td-layout-nav logo="assets:testmanagement-light-v2">
     <md-toolbar color="primary" class="pad-none">
       <nav md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
         <a class="text-menu" md-tab-link [routerLink]='' routerLinkActive="active" [active]="true">

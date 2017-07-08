@@ -27,8 +27,14 @@ export class AppComponent {
       this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/listener.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'querygrid',
       this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/querygrid.svg'));
-    this._iconRegistry.addSvgIconInNamespace('assets', 'milizian',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/milizian.svg'));
+    this._iconRegistry.addSvgIconInNamespace('assets', 'testmanagement',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/testmanagement.svg'));
+    this._iconRegistry.addSvgIconInNamespace('assets', 'testmanagement-light',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/testmanagement-light.svg'));
+    this._iconRegistry.addSvgIconInNamespace('assets', 'testmanagement-light-v2',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/testmanagement-light-v2.svg'));
+    this._iconRegistry.addSvgIconInNamespace('assets', 'testmanagement-accent',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/testmanagement-accent.svg'));
   }
 
 }

@@ -1,0 +1,20 @@
+@import '../../theme';
+/* Variables */
+$primary:       map-get($theme, primary);
+$primary-light: map-get($theme-light, primary-light);
+$accent:        map-get($theme, accent);
+$accent-light:  map-get($theme-light, accent-light);
+$warn:          map-get($theme, warn);
+$warn-light:    map-get($theme-light, warn-light);
+
+.text-menu {
+  font-weight: bolder;
+}
+
+
+/* :host /deep/ lets shadowdom style child elements */
+:host /deep/ {
+    md-ink-bar {
+        background-color: mat-color($accent) !important;
+    }
+}

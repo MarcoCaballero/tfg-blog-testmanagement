@@ -1,3 +1,14 @@
+@import 'theme';
+
+/* Variables */
+$primary:       map-get($theme, primary);
+$primary-light: map-get($theme-light, primary-light);
+$accent:        map-get($theme, accent);
+$accent-light:  map-get($theme-light, accent-light);
+$warn:          map-get($theme, warn);
+$warn-light:    map-get($theme-light, warn-light);
+
+
 // Custom style for loading elements without height
 .will-load {
     min-height: 80px;

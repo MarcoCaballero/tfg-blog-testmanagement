@@ -1,144 +1,193 @@
-<td-layout-nav logo="assets:covalent">
-  <div td-toolbar-content layout="row" layout-align="center center" flex>
-    <span>Quickstart</span>
-    <span flex></span>
-    <a md-icon-button mdTooltip="Docs" href="https://teradata.github.io/covalent/" target="_blank"><md-icon>chrome_reader_mode</md-icon></a>
-    <a md-icon-button mdTooltip="Github" href="https://github.com/teradata/covalent" target="_blank"><md-icon svgIcon="assets:github"></md-icon></a>
-  </div>
-  <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
-    <div flex-gt-sm="60">
-      <md-card>
-        <md-card-title>Products Sales</md-card-title>
-        <md-card-subtitle>usage stats for our products</md-card-subtitle>
-        <md-divider></md-divider>
-        <div class="chart-height push-top push-right-sm">
-          <ngx-charts-area-chart-stacked
-            [scheme]="colorScheme"
-            [results]="multi"
-            [gradient]="gradient"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [legend]="showLegend"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            [yAxisTickFormatting]="axisDigits">
-          </ngx-charts-area-chart-stacked>
-        </div>
-      </md-card>
-      <div layout="row">
-        <div flex="33" layout="column">
-          <md-card class="md-card-colored" flex>
-            <md-card-content class="text-center">
-              <div class="md-headline">{{ '2341'| digits }} <md-icon class="tc-green-500 text-sm">arrow_upward</md-icon></div>
-              <md-icon class="icon tc-indigo-700">perm_contact_calendar</md-icon>
-              <div layout="column">
-                <div class="md-subhead">Active Users</div>
-                <div class="md-caption tc-grey-600">updated {{ '2016-06-17 12:59:59' | timeAgo }}</div>
-              </div>
-            </md-card-content>
-          </md-card>
-        </div>
-        <div flex="33" layout="column">
-          <md-card class="md-card-colored" flex>
-            <md-card-content class="text-center">
-              <div class="md-headline">{{ '72452903343' | bytes }} <md-icon class="tc-red-500 text-sm">arrow_downward</md-icon></div>
-              <md-icon class="icon tc-light-blue-700">sd_storage</md-icon>
-              <div layout="column">
-                <div class="md-subhead">User Disk Usage</div>
-                <div class="md-caption tc-grey-600">updated {{ '2016-07-18 11:02:59' | timeAgo }}</div>
-              </div>
-            </md-card-content>
-          </md-card>
-        </div>
-        <div flex="33" layout="column">
-          <md-card class="md-card-colored" flex>
-            <md-card-content class="text-center">
-              <div class="md-headline">{{ '324523' | digits}} <md-icon class="tc-green-500 text-sm">arrow_upward</md-icon></div>
-              <md-icon class="icon tc-cyan-700">receipt</md-icon>
-              <div layout="column">
-                <div class="md-subhead">Pages Viewed</div>
-                <div class="md-caption tc-grey-600">updated {{ '2016-07-13 09:59:59' | timeAgo }}</div>
-              </div>
-            </md-card-content>
-          </md-card>
-        </div>
+<section class="bgc-blue-grey-50">
+  <div layout-gt-xs="row">
+    <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+      <div class="push-top-xl" hide-xs></div>
+      <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
+        <h1 class="md-display-1 tc-blue-A400 push-top-xs push-bottom-sm">Main Site Slogan</h1>
+        <h2 class="md-headline tc-grey-800 push-top-xs push-bottom-sm">Supporting Secondary Text</h2>
+        <p class="md-subhead tc-grey-600">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate
+          strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic
+          world view of disruptive innovation via workplace diversity and empowerment.</p>
+        <button md-raised-button color="accent" class="push-bottom mat-button-lg text-upper">Call to Action</button>
       </div>
-      <md-card>
-        <md-card-title>Customer Activity</md-card-title>
-        <md-card-subtitle>Recent activity from select members</md-card-subtitle>
-        <md-divider></md-divider>
-        <md-nav-list class="will-load item-list">
-          <ng-template tdLoading="items.load">
-            <ng-template let-item let-last="last" ngFor [ngForOf]="items">
-              <a md-list-item layout-align="row" [routerLink]="['../item', item.item_id]">
-                <md-icon md-list-avatar> {{item.icon}} </md-icon>
-                <h3 md-line> {{item.name}} </h3>
-                <p md-line> {{item.description | truncate:50 }} </p>
-                <span flex></span>
-                <span class="md-caption text-right" flex="20"> {{item.created | timeAgo }} </span>
-              </a>
-              <md-divider *ngIf="!last" md-inset></md-divider>
-            </ng-template>
-          </ng-template>
-        </md-nav-list>
-      </md-card>
+      <div class="push-bottom-xl" hide-xs></div>
     </div>
-    <div flex-gt-sm="40">
-      <md-card>
-        <md-card-title>Alerts</md-card-title>
-        <md-card-subtitle>Items requiring attention</md-card-subtitle>
-        <md-divider></md-divider>
-        <md-list class="will-load alert-list">
-          <ng-template tdLoading="alerts.load">
-            <ng-template let-item let-last="last" ngFor [ngForOf]="alerts">
-              <md-list-item layout-align="row">
-                <md-icon md-list-avatar class="bgc-amber-800">{{item.icon}}</md-icon>
-                <h3 md-line> {{item.description}} </h3>
-                <p md-line> {{item.name}} </p>
-              </md-list-item>
-              <md-divider *ngIf="!last" md-inset></md-divider>
-            </ng-template>
-          </ng-template>
-        </md-list>
-        <md-divider></md-divider>
-        <md-card-actions>
-          <a md-button color="accent" class="text-upper" [routerLink]="['/logs']">
-            <span>View More</span>
-          </a>
-        </md-card-actions>
-      </md-card>
-      <md-card id="dashboard-favorites-card" class="push-top">
-        <md-card-title>Favorites</md-card-title>
-        <md-card-subtitle>Your favorite products</md-card-subtitle>
-        <md-divider></md-divider>
-        <md-nav-list class="will-load favorite-list">
-          <ng-template tdLoading="favorites.load">
-            <ng-template let-item let-last="last" ngFor [ngForOf]="products">
-              <md-list-item layout-align="row" [routerLink]="['/product']">
-                <md-icon md-list-avatar>{{item.icon}}</md-icon>
-                <h3 md-line> {{item.name}} </h3>
-                <p md-line> {{item.description}} </p>
-              </md-list-item>
-              <md-divider *ngIf="!last" md-inset></md-divider>
-            </ng-template>
-          </ng-template>
-        </md-nav-list>
-        <md-divider></md-divider>
-        <md-card-actions>
-          <a md-button color="accent" class="text-upper" [routerLink]="['/product']">
-            <span>View More</span>
-          </a>
-        </md-card-actions>
-      </md-card>
+    <div flex="40" layout="row" layout-align="center center">
+      <md-icon class="push" style="height:auto;width:auto;" svgIcon="assets:milizian"></md-icon>
     </div>
   </div>
-  <td-layout-footer>
-    <div layout="row" layout-align="start center">
-      <span class="md-caption">Copyright &copy; 2016 Teradata. All rights reserved</span>
-      <span flex></span>
-      <md-icon class="md-icon-ux" svgIcon="assets:teradata-ux"></md-icon>
+</section>
+
+<section class="bgc-blue-A700 tc-white" tdMediaToggle="gt-xs" [mediaClasses]="['pad-top-md', 'pad-bottom-xl']">
+  <h2 class="md-display-1 text-upper text-center push-bottom">Work with bleeding edge technology</h2>
+  <div layout="row" layout-align-gt-xs="center center">
+    <div flex-gt-xs="80" layout="row" layout-wrap>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="[0,1,2,3]">
+        <div class="text-center" flex-xs="50" flex-gt-xs="25">
+          <md-icon class="push" style="height:auto;width:auto;" svgIcon="assets:covalent-mark"></md-icon>
+        </div>
+      </ng-template>
     </div>
-  </td-layout-footer>
-</td-layout-nav>
+  </div>
+  <div class="text-center push-top">
+    <button md-raised-button color="accent" class="mat-button-lg text-upper">View Technology</button>
+  </div>
+</section>
+<section class="bgc-blue-grey-100" tdMediaToggle="gt-xs" [mediaClasses]="['pad-top-xl', 'pad-bottom-xl']">
+  <h2 class="md-display-1 text-upper text-center push-bottom">Current Team Openings</h2>
+  <div layout-gt-xs="row" layout-align-gt-xs="center center">
+    <div layout-gt-xs="row" flex-gt-xs="90" layout-margin>
+      <div flex-gt-xs="25">
+        <md-card>
+          <md-toolbar color="accent" class="bgc-blue-A400 push-bottom">
+            <span class="text-upper">Frontend</span>
+          </md-toolbar>
+          <md-card-subtitle>Openings</md-card-subtitle>
+          <md-divider></md-divider>
+          <md-list>
+            <ng-template let-item let-last="last" ngFor [ngForOf]="[0,1,2,3,4]">
+              <md-list-item>
+                <md-icon md-list-icon class="fill-grey-700">description</md-icon>
+                <h4 md-line>Frontend Engineer</h4>
+              </md-list-item>
+              <md-divider md-inset *ngIf="!last"></md-divider>
+            </ng-template>
+          </md-list>
+          <md-divider></md-divider>
+          <md-card-actions>
+            <a md-button color="accent" class="text-upper">View All</a>
+          </md-card-actions>
+        </md-card>
+      </div>
+
+      <div flex-gt-xs="25">
+        <md-card>
+          <md-toolbar color="accent" class="bgc-light-blue-A400 push-bottom">
+            <span class="text-upper">Backend</span>
+          </md-toolbar>
+          <md-card-subtitle>Openings</md-card-subtitle>
+          <md-divider></md-divider>
+          <md-list>
+            <ng-template let-item let-last="last" ngFor [ngForOf]="[0,1,2,3,4]">
+              <md-list-item>
+                <md-icon md-list-icon class="fill-grey-700">description</md-icon>
+                <h4 md-line>Backend Engineer</h4>
+              </md-list-item>
+              <md-divider md-inset *ngIf="!last"></md-divider>
+            </ng-template>
+          </md-list>
+          <md-divider></md-divider>
+          <md-card-actions>
+            <a md-button color="accent" class="text-upper">View All</a>
+          </md-card-actions>
+        </md-card>
+      </div>
+
+      <div flex-gt-xs="25">
+        <md-card>
+          <md-toolbar color="accent" class="bgc-cyan-A700 push-bottom">
+            <span class="text-upper">DevOps</span>
+          </md-toolbar>
+          <md-card-subtitle>Openings</md-card-subtitle>
+          <md-divider></md-divider>
+          <md-list>
+            <ng-template let-item let-last="last" ngFor [ngForOf]="[0,1,2,3,4]">
+              <md-list-item>
+                <md-icon md-list-icon class="fill-grey-700">description</md-icon>
+                <h4 md-line>DevOps Engineer</h4>
+              </md-list-item>
+              <md-divider md-inset *ngIf="!last"></md-divider>
+            </ng-template>
+          </md-list>
+          <md-divider></md-divider>
+          <md-card-actions>
+            <a md-button color="accent" class="text-upper">View All</a>
+          </md-card-actions>
+        </md-card>
+      </div>
+      <div flex-gt-xs="25">
+        <md-card>
+          <md-toolbar color="accent" class="bgc-teal-A700 push-bottom">
+            <span class="text-upper">Quality</span>
+          </md-toolbar>
+          <md-card-subtitle>Openings</md-card-subtitle>
+          <md-divider></md-divider>
+          <md-list>
+            <ng-template let-item let-last="last" ngFor [ngForOf]="[0,1,2,3,4]">
+              <md-list-item>
+                <md-icon md-list-icon class="fill-grey-700">description</md-icon>
+                <h4 md-line>Quality Engineer</h4>
+              </md-list-item>
+              <md-divider md-inset *ngIf="!last"></md-divider>
+            </ng-template>
+          </md-list>
+          <md-divider></md-divider>
+          <md-card-actions>
+            <a md-button color="accent" class="text-upper">View All</a>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+  <div class="text-center push-top">
+    <button md-raised-button color="accent" class="mat-button-lg text-upper">View All Openings</button>
+  </div>
+</section>
+<section class="bgc-green-A700">
+  <div layout-gt-xs="row">
+    <div flex="40" layout="row" layout-align="center center">
+      <md-icon class="push" style="height:auto;width:auto;" svgIcon="assets:covalent-mark"></md-icon>
+    </div>
+    <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xxl']">
+      <div class="push-top-xxl" hide-xs></div>
+      <h3 class="md-display-1 tc-white push-top-xs push-bottom-sm">The most desirable locations</h3>
+      <p class="md-title tc-blue-50">Austin, Boston, San Diego and The Bay Area!</p>
+      <button color="accent" md-raised-button class="push-bottom-md text-upper">View More</button>
+      <div class="push-top-xxl" hide-xs></div>
+    </div>
+  </div>
+</section>
+<!-- end content -->
+<section class="bgc-blue-grey-800 tc-blue-grey-100">
+  <div layout-gt-xs="row" layout-align-gt-xs="center center">
+    <div layout-gt-sm="row" flex-gt-xs="75" layout-margin layout-padding>
+      <div flex>
+        <md-nav-list>
+          <h3 md-subheader class="text-upper tc-blue-grey-100">About Teradata</h3>
+          <md-list-item>
+            <p md-line class="tc-blue-grey-300">Company Info</p>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="tc-blue-grey-300">Our Customers</p>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="tc-blue-grey-300">Press</p>
+          </md-list-item>
+        </md-nav-list>
+      </div>
+      <div flex>
+        <md-nav-list>
+          <h3 md-subheader class="text-upper tc-blue-grey-100">Career Info</h3>
+          <md-list-item>
+            <p md-line class="tc-blue-grey-300">Benefits</p>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="tc-blue-grey-300">Locations</p>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="tc-blue-grey-300">List item</p>
+          </md-list-item>
+        </md-nav-list>
+      </div>
+      <div flex-gt-xs="10">
+      </div>
+      <div flex layout="column" flex-gt-xs="30">
+        <md-icon class="push-top-md" svgIcon="assets:covalent" style="height:auto;width:auto;"></md-icon>
+        <p class="md-body-1">&copy; Copyright 2017 Teradata, Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<a md-fab color="accent" mdTooltip="Contact Us" mdTooltipPosition="above" class="mat-fab-position-bottom-right fixed">
+  <md-icon>keyboard_arrow_right</md-icon>
+</a>

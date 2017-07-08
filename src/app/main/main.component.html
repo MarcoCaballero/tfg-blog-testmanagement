@@ -2,12 +2,38 @@
   <td-navigation-drawer logo="assets:covalent" sidenavTitle="Quickstart" name="Firstname Lastname" email="firstname.lastname@company.com">
     <md-nav-list>
       <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
-        <a md-list-item [routerLink]="[item.route]" (click)="layout.close()"><md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+        <a md-list-item [routerLink]="[item.route]" (click)="layout.close()">
+          <md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
       </ng-template>
     </md-nav-list>
     <md-nav-list td-navigation-drawer-menu>
-      <a md-list-item (click)="logout()"><md-icon>exit_to_app</md-icon>Sign out</a>
+      <a md-list-item (click)="logout()">
+        <md-icon>exit_to_app</md-icon>Sign out</a>
     </md-nav-list>
   </td-navigation-drawer>
-  <router-outlet></router-outlet>
+
+
+  <td-layout-nav logo="assets:covalent">
+    <md-toolbar color="primary" class="pad-none">
+      <nav md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
+        <a class="text-menu" md-tab-link [routerLink]='' routerLinkActive="active" [active]="true">
+          <span hide-xs>Home</span>
+          <span hide-gt-xs><md-icon>home</md-icon></span>
+        </a>
+        <a class="text-menu" md-tab-link>
+          <span hide-xs>Recent Posts</span>
+          <span hide-gt-xs><md-icon>laptop_mac</md-icon></span>
+        </a>
+        <a class="text-menu" md-tab-link>
+          <span hide-xs>Posts timeline</span>
+          <span hide-gt-xs><md-icon>language</md-icon></span>
+        </a>
+        <a class="text-menu" md-tab-link>
+          <span hide-xs>Related</span>
+          <span hide-gt-xs><md-icon>assignment</md-icon></span>
+        </a>
+      </nav>
+    </md-toolbar>
+    <router-outlet></router-outlet>
+  </td-layout-nav>
 </td-layout>

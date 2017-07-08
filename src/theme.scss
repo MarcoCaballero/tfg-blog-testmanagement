@@ -12,13 +12,18 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
 $primary: mat-palette($mat-blue, 700);
-$accent:  mat-palette($mat-orange, 800, A100, A400);
+$primary-light: mat-palette($mat-blue, 400);
+$accent:  mat-palette($mat-orange, 600, A100, A400);
+$accent-light:  mat-palette($mat-orange, 200, A100, A400);
+
 
 // The warn palette is optional (defaults to red).
-$warn:    mat-palette($mat-red, 600);
+$warn:    mat-palette($mat-red, 700);
+$warn-light:    mat-palette($mat-red, 300);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $theme: mat-light-theme($primary, $accent, $warn);
+$theme-light: mat-light-theme($primary-light, $accent-light, $warn-light);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -108,6 +113,24 @@ ngx-charts-line-chart {
     .line-series {
         .line {
             stroke-width: 2;
+        }
+    }
+}
+
+// Expansion panels
+.theme-dark .td-expansion-panel {
+    background-color: mat-color($mat-blue-grey, 800);
+}
+
+// Active top nav
+nav {
+    a {
+        &:not(.active) {
+            color: rgba(255, 255, 255, 0.56);
+        }
+        &.active {
+            color: mat-color($accent);
+            // border-bottom: 1px solid $accent-color;
         }
     }
 }

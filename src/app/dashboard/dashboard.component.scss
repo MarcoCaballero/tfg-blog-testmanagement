@@ -1,3 +1,16 @@
+@import '../../theme';
+/* Variables */
+$primary:       map-get($theme, primary);
+$primary-light: map-get($theme-light, primary-light);
+$accent:        map-get($theme, accent);
+$accent-light:  map-get($theme-light, accent-light);
+$warn:          map-get($theme, warn);
+$warn-light:    map-get($theme-light, warn-light);
+
+/* :host /deep/ lets shadowdom style child elements */
+:host /deep/ { }
+
+
 .md-icon-ux {
     width: 100px;
 }
@@ -6,4 +19,18 @@
 }
 .chart-height {
   height: 300px;
+}
+
+$break-small: 599px;
+
+.bgc-blue-grey-50 {
+  md-icon {
+    @media screen and (max-width: $break-small)  {
+        position: absolute;
+        left: 39%;
+        height: auto;
+        width: auto;
+    }
+  }
+
 }

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
-import { Title }     from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
 import { UserService, IUser } from '../users';
 
-import { ItemsService, ProductsService, AlertsService } from '../../services';
+import { ItemsService, ProductsService, AlertsService, WindowRefService } from '../../services';
 
 import { multi } from './data';
 
@@ -14,10 +14,10 @@ import { multi } from './data';
   selector: 'qs-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  viewProviders: [ ItemsService, ProductsService, AlertsService ],
+  viewProviders: [ItemsService, ProductsService, AlertsService, WindowRefService],
 })
 export class DashboardComponent implements OnInit {
-
+  private window: Window;
   items: Object[];
   users: IUser[];
   products: Object[];
@@ -46,24 +46,29 @@ export class DashboardComponent implements OnInit {
   // line, area
   autoScale: boolean = true;
 
+
+
   constructor(private _titleService: Title,
-              private _itemsService: ItemsService,
-              private _userService: UserService,
-              private _alertsService: AlertsService,
-              private _productsService: ProductsService,
-              private _loadingService: TdLoadingService) {
-                // Chart
-                this.multi = multi.map((group: any) => {
-                  group.series = group.series.map((dataItem: any) => {
-                    dataItem.name = new Date(dataItem.name);
-                    return dataItem;
-                  });
-                  return group;
-                });
+    private _itemsService: ItemsService,
+    private _userService: UserService,
+    private _alertsService: AlertsService,
+    private _productsService: ProductsService,
+    private _loadingService: TdLoadingService,
+    private _windowService: WindowRefService) {
+    // Chart
+    this.multi = multi.map((group: any) => {
+      group.series = group.series.map((dataItem: any) => {
+        dataItem.name = new Date(dataItem.name);
+        return dataItem;
+      });
+      return group;
+    });
+    this.window = _windowService.nativeWindow;
+
   }
 
   ngOnInit(): void {
-    this._titleService.setTitle( 'Covalent Quickstart' );
+    this._titleService.setTitle('TestManagement Blog');
     this._loadingService.register('items.load');
     this._itemsService.query().subscribe((items: Object[]) => {
       this.items = items;
@@ -119,4 +124,10 @@ export class DashboardComponent implements OnInit {
   axisDigits(val: any): any {
     return new TdDigitsPipe().transform(val);
   }
+
+  scrollTop(): void {
+    this.window.scrollTo(0, 0);
+    console.log(`yeah wrong! ${this.window.scrollY} `);
+  }
+
 }

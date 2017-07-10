@@ -16,6 +16,8 @@ import {
   MdTabsModule, MdSelectModule,
 } from '@angular/material';
 import { NgxChartsModule, } from '@swimlane/ngx-charts';
+import { ScrollToModule } from 'ng2-scroll-to';
+
 
 const FLEX_LAYOUT_MODULES: any[] = [
   FlexLayoutModule,
@@ -52,6 +54,7 @@ const CHART_MODULES: any[] = [
     COVALENT_MODULES,
     CHART_MODULES,
     FLEX_LAYOUT_MODULES,
+    ScrollToModule.forRoot(),
   ],
   declarations: [
 

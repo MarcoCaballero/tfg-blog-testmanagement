@@ -604,7 +604,7 @@ body-parser@^1.12.4:
     http-errors "~1.6.1"
     iconv-lite "0.4.15"
     on-finished "~2.3.0"
-    qs "6.4.0"
+    tmblog "6.4.0"
     raw-body "~2.2.0"
     type-is "~1.6.15"
 
@@ -1751,7 +1751,7 @@ engine.io-client@1.8.2:
     has-cors "1.1.0"
     indexof "0.0.1"
     parsejson "0.0.3"
-    parseqs "0.0.5"
+    parsetmblog "0.0.5"
     parseuri "0.0.5"
     ws "1.1.1"
     xmlhttprequest-ssl "1.5.3"
@@ -1928,7 +1928,7 @@ express@^4.13.3:
     parseurl "~1.3.1"
     path-to-regexp "0.1.7"
     proxy-addr "~1.1.4"
-    qs "6.4.0"
+    tmblog "6.4.0"
     range-parser "~1.2.0"
     send "0.15.3"
     serve-static "1.12.3"
@@ -3828,9 +3828,9 @@ parsejson@0.0.3:
   dependencies:
     better-assert "~1.0.0"
 
-parseqs@0.0.5:
+parsetmblog@0.0.5:
   version "0.0.5"
-  resolved "https://registry.yarnpkg.com/parseqs/-/parseqs-0.0.5.tgz#d5208a3738e46766e291ba2ea173684921a8b89d"
+  resolved "https://registry.yarnpkg.com/parsetmblog/-/parsetmblog-0.0.5.tgz#d5208a3738e46766e291ba2ea173684921a8b89d"
   dependencies:
     better-assert "~1.0.0"
 
@@ -3987,7 +3987,7 @@ postcss-discard-unused@^2.2.1:
   resolved "https://registry.yarnpkg.com/postcss-discard-unused/-/postcss-discard-unused-2.2.3.tgz#bce30b2cc591ffc634322b5fb3464b6d934f4433"
   dependencies:
     postcss "^5.0.14"
-    uniqs "^2.0.0"
+    unitmblog "^2.0.0"
 
 postcss-filter-plugins@^2.0.0:
   version "2.0.2"
@@ -4078,7 +4078,7 @@ postcss-minify-params@^1.0.4:
     alphanum-sort "^1.0.1"
     postcss "^5.0.2"
     postcss-value-parser "^3.0.2"
-    uniqs "^2.0.0"
+    unitmblog "^2.0.0"
 
 postcss-minify-selectors@^2.0.4:
   version "2.1.1"
@@ -4182,7 +4182,7 @@ postcss-unique-selectors@^2.0.2:
   dependencies:
     alphanum-sort "^1.0.1"
     postcss "^5.0.4"
-    uniqs "^2.0.0"
+    unitmblog "^2.0.0"
 
 postcss-url@^5.1.2:
   version "5.1.2"
@@ -4206,7 +4206,7 @@ postcss-zindex@^2.0.1:
   dependencies:
     has "^1.0.1"
     postcss "^5.0.4"
-    uniqs "^2.0.0"
+    unitmblog "^2.0.0"
 
 postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.15, postcss@^5.2.16:
   version "5.2.17"
@@ -4319,13 +4319,13 @@ qjobs@^1.1.4:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/qjobs/-/qjobs-1.1.5.tgz#659de9f2cf8dcc27a1481276f205377272382e73"
 
-qs@6.4.0, qs@~6.4.0:
+tmblog@6.4.0, tmblog@~6.4.0:
   version "6.4.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
+  resolved "https://registry.yarnpkg.com/tmblog/-/tmblog-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-qs@~5.2.0:
+tmblog@~5.2.0:
   version "5.2.1"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
+  resolved "https://registry.yarnpkg.com/tmblog/-/tmblog-5.2.1.tgz#801fee030e0b9450d6385adc48a4cc55b44aedfc"
 
 query-string@^4.1.0:
   version "4.3.4"
@@ -4577,7 +4577,7 @@ request@2, request@^2.72.0, request@^2.78.0, request@^2.79.0, request@^2.81.0:
     mime-types "~2.1.7"
     oauth-sign "~0.8.1"
     performance-now "^0.2.0"
-    qs "~6.4.0"
+    tmblog "~6.4.0"
     safe-buffer "^5.0.1"
     stringstream "~0.0.4"
     tough-cookie "~2.3.0"
@@ -4604,7 +4604,7 @@ request@~2.67.0:
     mime-types "~2.1.7"
     node-uuid "~1.4.7"
     oauth-sign "~0.8.0"
-    qs "~5.2.0"
+    tmblog "~5.2.0"
     stringstream "~0.0.4"
     tough-cookie "~2.2.0"
     tunnel-agent "~0.4.1"
@@ -5431,9 +5431,9 @@ uniqid@^4.0.0:
   dependencies:
     macaddress "^0.2.8"
 
-uniqs@^2.0.0:
+unitmblog@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/uniqs/-/uniqs-2.0.0.tgz#ffede4b36b25290696e6e165d4a59edb998e6b02"
+  resolved "https://registry.yarnpkg.com/unitmblog/-/unitmblog-2.0.0.tgz#ffede4b36b25290696e6e165d4a59edb998e6b02"
 
 unique-string@^1.0.0:
   version "1.0.0"

@@ -23,14 +23,8 @@ $warn-light:    map-get($theme-light, warn-light);
 
 $break-small: 599px;
 
-.bgc-blue-grey-50 {
-  md-icon {
-    @media screen and (max-width: $break-small)  {
-        position: absolute;
-        left: 39%;
-        height: auto;
-        width: auto;
-    }
-  }
-
+.logos {
+  min-width: 30%;
 }
+
+

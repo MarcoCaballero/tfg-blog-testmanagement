@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 
-import { Title } from '@angular/platform-browser';
+import { Title, DOCUMENT } from '@angular/platform-browser';
 
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
@@ -10,14 +10,28 @@ import { ItemsService, ProductsService, AlertsService, WindowRefService } from '
 
 import { multi } from './data';
 
+export interface IStackLogos {
+  name: string;
+  logo: string;
+}
+
 @Component({
-  selector: 'qs-dashboard',
+  selector: 'tmblog-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   viewProviders: [ItemsService, ProductsService, AlertsService, WindowRefService],
 })
 export class DashboardComponent implements OnInit {
-  private window: Window;
+  logos: IStackLogos[] = [
+    { name: 'angular', logo: 'assets:angular' },
+    { name: 'spring', logo: 'assets:spring' },
+    { name: 'travis', logo: 'assets:travis' },
+  ];
+  logosBottom: IStackLogos[] = [
+    { name: 'docker', logo: 'assets:docker' },
+    { name: 'covalent', logo: 'assets:covalent-mark' },
+    { name: 'elastest', logo: 'assets:elastest' },
+  ];
   items: Object[];
   users: IUser[];
   products: Object[];
@@ -45,8 +59,7 @@ export class DashboardComponent implements OnInit {
 
   // line, area
   autoScale: boolean = true;
-
-
+  showButton: boolean = false;
 
   constructor(private _titleService: Title,
     private _itemsService: ItemsService,
@@ -54,7 +67,8 @@ export class DashboardComponent implements OnInit {
     private _alertsService: AlertsService,
     private _productsService: ProductsService,
     private _loadingService: TdLoadingService,
-    private _windowService: WindowRefService) {
+    private _windowService: WindowRefService,
+    @Inject(DOCUMENT) private document: any) {
     // Chart
     this.multi = multi.map((group: any) => {
       group.series = group.series.map((dataItem: any) => {
@@ -63,61 +77,16 @@ export class DashboardComponent implements OnInit {
       });
       return group;
     });
-    this.window = _windowService.nativeWindow;
 
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  public onWindowScroll(event: Event): void {
+    alert('hi');
   }
 
   ngOnInit(): void {
     this._titleService.setTitle('TestManagement Blog');
-    this._loadingService.register('items.load');
-    this._itemsService.query().subscribe((items: Object[]) => {
-      this.items = items;
-      setTimeout(() => {
-        this._loadingService.resolve('items.load');
-      }, 750);
-    }, (error: Error) => {
-      this._itemsService.staticQuery().subscribe((items: Object[]) => {
-        this.items = items;
-        setTimeout(() => {
-          this._loadingService.resolve('items.load');
-        }, 750);
-      });
-    });
-    this._loadingService.register('alerts.load');
-    this._alertsService.query().subscribe((alerts: Object[]) => {
-      this.alerts = alerts;
-      setTimeout(() => {
-        this._loadingService.resolve('alerts.load');
-      }, 750);
-    });
-    this._loadingService.register('products.load');
-    this._productsService.query().subscribe((products: Object[]) => {
-      this.products = products;
-      setTimeout(() => {
-        this._loadingService.resolve('products.load');
-      }, 750);
-    });
-    this._loadingService.register('favorites.load');
-    this._productsService.query().subscribe((products: Object[]) => {
-      this.products = products;
-      setTimeout(() => {
-        this._loadingService.resolve('favorites.load');
-      }, 750);
-    });
-    this._loadingService.register('users.load');
-    this._userService.query().subscribe((users: IUser[]) => {
-      this.users = users;
-      setTimeout(() => {
-        this._loadingService.resolve('users.load');
-      }, 750);
-    }, (error: Error) => {
-      this._userService.staticQuery().subscribe((users: IUser[]) => {
-        this.users = users;
-        setTimeout(() => {
-          this._loadingService.resolve('users.load');
-        }, 750);
-      });
-    });
   }
 
   // ngx transform using covalent digits pipe
@@ -125,9 +94,10 @@ export class DashboardComponent implements OnInit {
     return new TdDigitsPipe().transform(val);
   }
 
-  scrollTop(): void {
-    this.window.scrollTo(0, 0);
-    console.log(`yeah wrong! ${this.window.scrollY} `);
+  showScroll(): boolean {
+    if (this.document.body.scrollTop > 20 || this.document.documentElement.scrollTop > 20) {
+      return true;
+    }
+    return false;
   }
-
 }

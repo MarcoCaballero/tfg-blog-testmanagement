@@ -19,7 +19,8 @@
     "webdriver-update": "bash ./node_modules/.bin/webdriver-manager update",
     "test": "ng test --code-coverage --single-run",
     "ghpages-deploy": "ng build --base-href /tfg-blog-testmanagement/ --aot -prod --sourcemap=false && bash scripts/ghpages-deploy",
-    "deploy": "ng build --prod --base-href https://MarcoCaballero.github.io/tfg-blog-testmanagement/ && angular-cli-ghpages --branch gh-pages"   },
+    "deploy": "ng build --prod --base-href https://MarcoCaballero.github.io/tfg-blog-testmanagement/ && ngh --no-silent"
+  },
   "engines": {
     "node": ">4.4 < 7",
     "npm": ">3"
@@ -53,6 +54,7 @@
     "d3": "^4.9.0",
     "hammerjs": "^2.0.8",
     "highlight.js": "9.10.0",
+    "ng2-scroll-to": "^1.0.7",
     "rxjs": "^5.4.0",
     "showdown": "1.6.4",
     "zone.js": "^0.8.5"

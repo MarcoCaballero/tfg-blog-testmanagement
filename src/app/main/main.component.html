@@ -12,9 +12,18 @@
     </md-nav-list>
   </td-navigation-drawer>
 
-
   <td-layout-nav logo="assets:testmanagement-light-v2" toolbarTitle="Blog">
-    <md-toolbar color="primary" class="pad-none">
+    <div td-toolbar-content layout="row" layout-align="center center" flex>
+      <span></span>
+      <span flex></span>
+      <a md-icon-button mdTooltip="Github" href="https://github.com/MarcoCaballero/tfg-blog-testmanagement" target="_blank">
+        <md-icon svgIcon="assets:github"></md-icon>
+      </a>
+      <a md-icon-button mdTooltip="LinkedIn" href="https://www.linkedin.com/in/marco-caballero/" target="_blank">
+        <md-icon svgIcon="assets:linkedin"></md-icon>
+      </a>
+    </div>
+    <md-toolbar id="mainComponent-main" color="primary" class="pad-none">
       <nav md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
         <a class="text-menu" md-tab-link [routerLink]='' routerLinkActive="active" [active]="true">
           <span hide-xs>Home</span>

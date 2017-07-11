@@ -48,11 +48,4 @@ export class AppComponent {
     this._iconRegistry.addSvgIconInNamespace('assets', 'elastest',
       this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/elastest.svg'));
   }
-
-
-  @HostListener('window:scroll', ['$event'])
-  public onWindowScroll(event: Event): void {
-    alert('hi');
-  }
-
 }

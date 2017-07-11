@@ -12,6 +12,8 @@ $warn-light:    map-get($theme-light, warn-light);
 }
 
 
+
+
 /* :host /deep/ lets shadowdom style child elements */
 :host /deep/ {
     md-ink-bar {
@@ -20,5 +22,12 @@ $warn-light:    map-get($theme-light, warn-light);
     md-icon.md-icon-logo.mat-icon {
         width: 125px !important;
     }
-
+    md-toolbar {
+        background: mat-color($primary);
+        color: white;
+        md-icon.md-icon-logo.ng-tns-c3-0.mat-icon {
+            margin-left: 17%;
+            min-width: 58%;
+        }
+    }
 }

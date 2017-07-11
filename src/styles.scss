@@ -27,3 +27,11 @@ a[md-icon-button] {
 td-layout-manage-list .mat-toolbar {
     font-weight: 400;
 }
+
+
+.fill-white {
+  color: white !important;
+}
+
+:host /deep/ { }
+

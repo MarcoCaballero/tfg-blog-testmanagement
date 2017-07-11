@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Title, DOCUMENT } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
@@ -59,16 +59,13 @@ export class DashboardComponent implements OnInit {
 
   // line, area
   autoScale: boolean = true;
-  showButton: boolean = false;
 
   constructor(private _titleService: Title,
     private _itemsService: ItemsService,
     private _userService: UserService,
     private _alertsService: AlertsService,
     private _productsService: ProductsService,
-    private _loadingService: TdLoadingService,
-    private _windowService: WindowRefService,
-    @Inject(DOCUMENT) private document: any) {
+    private _loadingService: TdLoadingService) {
     // Chart
     this.multi = multi.map((group: any) => {
       group.series = group.series.map((dataItem: any) => {
@@ -77,12 +74,6 @@ export class DashboardComponent implements OnInit {
       });
       return group;
     });
-
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  public onWindowScroll(event: Event): void {
-    alert('hi');
   }
 
   ngOnInit(): void {
@@ -94,10 +85,6 @@ export class DashboardComponent implements OnInit {
     return new TdDigitsPipe().transform(val);
   }
 
-  showScroll(): boolean {
-    if (this.document.body.scrollTop > 20 || this.document.documentElement.scrollTop > 20) {
-      return true;
-    }
-    return false;
-  }
+
+
 }

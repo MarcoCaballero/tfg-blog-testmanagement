@@ -47,6 +47,7 @@ export function getAPI(): string {
     Title, {
       provide: USERS_API, useFactory: getAPI,
     }, USER_PROVIDER,
+    { provide: 'windowObject', useValue: window },
   ], // additional providers needed for this module
   entryComponents: [],
   bootstrap: [AppComponent],

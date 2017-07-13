@@ -18,7 +18,6 @@ import {
 import { NgxChartsModule, } from '@swimlane/ngx-charts';
 import { ScrollToModule } from 'ng2-scroll-to';
 
-
 const FLEX_LAYOUT_MODULES: any[] = [
   FlexLayoutModule,
 ];

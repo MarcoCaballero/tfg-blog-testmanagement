@@ -5,16 +5,16 @@ import { MdSnackBar } from '@angular/material';
 
 import { TdDialogService, TdLoadingService } from '@covalent/core';
 
-import { UserService, IUser } from '../services/user.service';
+import { BlogService, IUser } from '../services/blog.service';
 
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'tmblog-user-form',
+  selector: 'tmblog-blog-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class UsersFormComponent implements OnInit {
+export class BlogsFormComponent implements OnInit {
 
   displayName: string;
   email: string;
@@ -23,7 +23,7 @@ export class UsersFormComponent implements OnInit {
   user: IUser;
   action: string;
 
-  constructor(private _userService: UserService,
+  constructor(private _BlogService: BlogService,
               private _router: Router,
               private _route: ActivatedRoute,
               private _snackBarService: MdSnackBar,
@@ -49,7 +49,7 @@ export class UsersFormComponent implements OnInit {
   async load(): Promise<void> {
     try {
       this._loadingService.register('user.form');
-      let user: IUser = await this._userService.get(this.id).toPromise();
+      let user: IUser = await this._BlogService.get(this.id).toPromise();
       this.displayName = user.displayName;
       this.email = user.email;
       this.admin = (user.siteAdmin === 1 ? true : false);
@@ -74,9 +74,9 @@ export class UsersFormComponent implements OnInit {
         lastAccess: now,
       };
       if (this.action === 'add') {
-        await this._userService.create(this.user).toPromise();
+        await this._BlogService.create(this.user).toPromise();
       } else {
-        await this._userService.update(this.id, this.user).toPromise();
+        await this._BlogService.update(this.id, this.user).toPromise();
       }
       this._snackBarService.open('User Saved', 'Ok');
       this.goBack();

@@ -21,9 +21,9 @@ export class MainComponent {
     route: '/logs',
     icon: 'receipt',
   }, {
-    title: 'Manage Users',
-    route: '/users',
-    icon: 'people',
+    title: 'Blogs section',
+    route: '/blogs',
+    icon: 'forum',
   },
   ];
 

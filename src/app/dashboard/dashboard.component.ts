@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
-import { UserService, IUser } from '../users';
+import { BlogService, IUser } from '../users';
 
 import { ItemsService, ProductsService, AlertsService, WindowRefService } from '../../services';
 
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private _titleService: Title,
     private _itemsService: ItemsService,
-    private _userService: UserService,
+    private _BlogService: BlogService,
     private _alertsService: AlertsService,
     private _productsService: ProductsService,
     private _loadingService: TdLoadingService) {

@@ -3,7 +3,7 @@ import { Title }     from '@angular/platform-browser';
 import { single, multi, multi2 } from './data';
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
-import { UserService, IUser } from '../../users';
+import { BlogService, IUser } from '../../users';
 
 import { ItemsService } from '../../../services';
 
@@ -48,7 +48,7 @@ export class ProductOverviewComponent implements OnInit {
 
   constructor(private _titleService: Title,
               private _itemsService: ItemsService,
-              private _userService: UserService,
+              private _BlogService: BlogService,
               private _loadingService: TdLoadingService) {
                 // Chart Single
                 Object.assign(this, {single});
@@ -88,13 +88,13 @@ export class ProductOverviewComponent implements OnInit {
       });
     });
     this._loadingService.register('users.load');
-    this._userService.query().subscribe((users: IUser[]) => {
+    this._BlogService.query().subscribe((users: IUser[]) => {
       this.users = users;
       setTimeout(() => {
         this._loadingService.resolve('users.load');
       }, 2000);
     }, (error: Error) => {
-      this._userService.staticQuery().subscribe((users: IUser[]) => {
+      this._BlogService.staticQuery().subscribe((users: IUser[]) => {
         this.users = users;
         setTimeout(() => {
           this._loadingService.resolve('users.load');

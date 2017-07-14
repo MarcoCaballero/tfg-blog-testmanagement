@@ -21,22 +21,12 @@
     </div>
     <md-toolbar id="mainComponent-main" color="primary" class="pad-none">
       <nav md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
-        <a class="text-menu" md-tab-link [routerLink]='' routerLinkActive="active" [active]="true">
-          <span hide-xs>Home</span>
-          <span hide-gt-xs><md-icon>home</md-icon></span>
-        </a>
-        <a class="text-menu" md-tab-link>
-          <span hide-xs>Recent Posts</span>
-          <span hide-gt-xs><md-icon>laptop_mac</md-icon></span>
-        </a>
-        <a class="text-menu" md-tab-link>
-          <span hide-xs>Posts timeline</span>
-          <span hide-gt-xs><md-icon>language</md-icon></span>
-        </a>
-        <a class="text-menu" md-tab-link>
-          <span hide-xs>Related</span>
-          <span hide-gt-xs><md-icon>assignment</md-icon></span>
-        </a>
+        <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+          <a class="text-menu sliding-underline" md-tab-link [routerLink]="[item.route]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <span  hide-xs>{{item.title}}</span>
+            <span  hide-gt-xs><md-icon>{{item.icon}}</md-icon></span>
+          </a>
+        </ng-template>
       </nav>
     </md-toolbar>
     <router-outlet></router-outlet>

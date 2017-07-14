@@ -14,7 +14,7 @@
 $primary: mat-palette($mat-blue, 700);
 $primary-light: mat-palette($mat-blue, 400);
 $accent:  mat-palette($mat-orange, 600, A100, A400);
-$accent-light:  mat-palette($mat-orange, 200, A100, A400);
+$accent-light:  mat-palette($mat-orange, 400);
 
 
 // The warn palette is optional (defaults to red).
@@ -124,13 +124,16 @@ ngx-charts-line-chart {
 
 // Active top nav
 nav {
-    a {
+    .sliding-underline {
+        &:hover {
+            border-bottom: 3px solid mat-color($accent-light);
+        }
         &:not(.active) {
-            color: rgba(255, 255, 255, 0.56);
+            color: rgba(255, 255, 255, 0.75);
         }
         &.active {
-            color: mat-color($accent);
-            // border-bottom: 1px solid $accent-color;
+            color: rgba(255, 255, 255, 1);
+            border-bottom: 3px solid mat-color($accent);
         }
     }
 }

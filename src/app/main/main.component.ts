@@ -13,7 +13,7 @@ export class MainComponent {
     route: '/',
     icon: 'dashboard',
   }, {
-    title: 'Product Dashboard',
+    title: 'ProductD',
     route: '/product',
     icon: 'view_quilt',
   }, {

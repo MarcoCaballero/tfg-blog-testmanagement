@@ -1,0 +1,181 @@
+@import '../../theme';
+
+/* Variables */
+$primary:       map-get($theme, primary);
+$primary-light: map-get($theme-light, primary-light);
+$accent:        map-get($theme, accent);
+$accent-light:  map-get($theme-light, accent-light);
+$warn:          map-get($theme, warn);
+$warn-light:    map-get($theme-light, warn-light);
+
+/* :host /deep/ lets shadowdom style child elements */
+:host /deep/ { }
+
+.menu-item-own {
+    margin-left: -16px;
+}
+
+.fab-actions button {
+     margin-top: 8px;
+}
+.column {
+    max-width: 43px;
+}
+
+#right-side{
+    transition: transform ease-out 0.5s;
+    transition-duration: 0.5s;
+    z-index: 2;
+    color: black;
+}
+
+#right-side:hover {
+    background-color:  mat-color(mat-palette($mat-orange, 400)) !important;
+    color: whitesmoke;
+}
+
+.mini {
+    position: absolute;
+    right: 27px;
+    bottom: 23px;
+    top: auto;
+    left: auto;
+}
+
+.fabActionsShow {
+    z-index: 1;
+    &#menu1 {
+        animation:  SHOW_1 1.1s;
+        animation-fill-mode: forwards;
+    }
+    &#menu2 {
+        animation:  SHOW_2 1.1s;
+        animation-fill-mode: forwards;
+    }
+    &#menu3 {
+        animation:  SHOW_3 1.1s;
+        animation-fill-mode: forwards;
+    }
+    &#menu4 {
+        animation:  SHOW_4 1.1s;
+        animation-fill-mode: forwards;
+    }
+     &#menu5 {
+        animation:  SHOW_5 1.1s;
+        animation-fill-mode: forwards;
+    }
+}
+
+.fabActionsHide {
+    z-index: 1;
+    &#menu1 {
+        animation:  HIDE_1 1.5s;
+        animation-fill-mode: forwards;
+    }
+    &#menu2 {
+        animation:  HIDE_2 1.5s;
+        animation-fill-mode: forwards;
+    }
+    &#menu3 {
+        animation:  HIDE_3 1.5s;
+        animation-fill-mode: forwards;
+    }
+    &#menu4 {
+        animation:  HIDE_4 1.5s;
+        animation-fill-mode: forwards;
+    }
+    &#menu5 {
+        animation:  HIDE_5 1.5s;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes SHOW_1 {
+  from   { visibility: hidden;
+         transform: translateY(0px); }
+  to { visibility: visible;
+         transform: translateY(-60px); }
+}
+@keyframes SHOW_2 {
+  from   { visibility: hidden;
+         transform: translateY(0px);}
+  to { visibility: visible;
+         transform: translateY(-120px); }
+}
+@keyframes SHOW_3 {
+  from   { visibility: hidden;
+         transform: translateY(0px);}
+  to { visibility: visible;
+         transform: translateY(-180px);}
+}
+@keyframes SHOW_4 {
+  from   { visibility: hidden;
+         transform: translateY(0px);}
+  to { visibility: visible;
+         transform: translateY(-240px);}
+}
+@keyframes SHOW_5 {
+  from   { visibility: hidden;
+         transform: translateY(0px);}
+  to { visibility: visible;
+         transform: translateY(-300px);}
+}
+
+@keyframes HIDE_1 {
+    from {
+        visibility: visible;
+        transform: translateY(-60px);
+        }
+    to {
+        transform: translateY(-11px);
+        visibility: hidden;
+        }
+}
+@keyframes HIDE_2 {
+    from {
+        visibility: visible;
+        transform: translateY(-120px);
+        }
+    to {
+        transform: translateY(-11px);
+        visibility: hidden;
+        }
+}
+@keyframes HIDE_3 {
+    from {
+        visibility: visible;
+        transform: translateY(-180px);
+        }
+    to {
+        transform: translateY(-11px);
+        visibility: hidden;
+        }
+}
+@keyframes HIDE_4 {
+    from {
+        visibility: visible;
+        transform: translateY(-240px);
+        }
+    to {
+        transform: translateY(-11px);
+        visibility: hidden;
+        }
+}
+@keyframes HIDE_5 {
+    from {
+        visibility: visible;
+        transform: translateY(-300px);
+        }
+    to {
+        transform: translateY(-11px);
+        visibility: hidden;
+        }
+}
+
+
+
+
+
+
+
+

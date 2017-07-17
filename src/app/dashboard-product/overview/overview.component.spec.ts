@@ -80,7 +80,7 @@ describe('Component: ProductOverview', () => {
           created : '07/01/2016 03:41 PM',
         }]),
       })));
-      responses.set('data/users.json', new Response(new ResponseOptions({
+      responses.set('data/blogs.json', new Response(new ResponseOptions({
         status: 200, body: JSON.stringify([{
           displayName : 'Suzy Cuningham',
           id : 'suzy.cuningham',

@@ -3,7 +3,7 @@ import { Title }     from '@angular/platform-browser';
 import { single, multi, multi2 } from './data';
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
-import { BlogService, IUser } from '../../users';
+import { BlogService, IUser } from '../../blogs';
 
 import { ItemsService } from '../../../services';
 

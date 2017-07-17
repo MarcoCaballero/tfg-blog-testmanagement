@@ -1,0 +1,102 @@
+<td-layout-nav logo="assets:testmanagement-light-v2" toolbarTitle="Blog">
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span></span>
+    <span flex></span>
+    <a md-icon-button mdTooltip="Github" href="https://github.com/MarcoCaballero/tfg-blog-testmanagement" target="_blank">
+      <md-icon svgIcon="assets:github"></md-icon>
+    </a>
+    <a md-icon-button mdTooltip="LinkedIn" href="https://www.linkedin.com/in/marco-caballero/" target="_blank">
+      <md-icon svgIcon="assets:linkedin"></md-icon>
+    </a>
+  </div>
+  <td-layout-manage-list #manageList [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+    [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+    <md-toolbar td-sidenav-content>
+      <span>Blogs</span>
+    </md-toolbar>
+    <md-nav-list td-sidenav-content>
+      <a md-list-item  (click)="!media.query('gt-sm') && manageList.close()">
+        <md-icon md-list-icon>forum</md-icon>
+        All Blogs
+      </a>
+      <a md-list-item  (click)="!media.query('gt-sm') && manageList.close()">
+        <md-icon md-list-icon>timeline</md-icon>
+        Timeline Blogs
+      </a>
+      <a md-list-item  (click)="!media.query('gt-sm') && manageList.close()">
+        <md-icon md-list-icon>filter_1</md-icon>
+        TestManagement
+      </a>
+      <a md-list-item  (click)="!media.query('gt-sm') && manageList.close()">
+        <md-icon md-list-icon>filter_2</md-icon>
+        Plugin
+      </a>
+      <a md-list-item  (click)="!media.query('gt-sm') && manageList.close()">
+        <md-icon md-list-icon>filter_3</md-icon>
+        Blog
+      </a>
+    </md-nav-list>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span>All Users</span>
+      <span flex></span>
+      <button md-icon-button><md-icon class="md-24">view_module</md-icon></button>
+      <button md-icon-button><md-icon class="md-24">sort</md-icon></button>
+      <button md-icon-button><md-icon class="md-24">settings</md-icon></button>
+      <button md-icon-button><md-icon class="md-24">more_vert</md-icon></button>
+    </div>
+    <md-card class="push-bottom-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+      <td-search-box class="push-left push-right" placeholder="search" [alwaysVisible]="true" (searchDebounce)="filterUsers($event)"></td-search-box>
+      <md-divider></md-divider>
+      <ng-template tdLoading="users.list">
+        <md-list class="will-load">
+          <div class="md-padding" *ngIf="filteredUsers?.length === 0" layout="row" layout-align="center center">
+            <h3>No users to display.</h3>
+          </div>
+          <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
+            <md-list-item>
+              <md-icon md-list-avatar>person</md-icon>
+              <h3 md-line> {{user.displayName}} </h3>
+              <p md-line> {{user.email}} </p>
+              <p md-line hide-gt-md class="md-caption"> last login: {{ user.lastAccess | timeAgo }} </p>
+              <span flex></span>
+              <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
+                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.created | date }} </div>
+                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.lastAccess | timeAgo }} </div>
+              </span>
+              <span>
+                  <button md-icon-button  [routerLink]="[user.id, 'edit']">
+                  <md-icon>keyboard_arrow_right</md-icon>
+                  </button>
+              </span>
+            </md-list-item>
+            <md-divider *ngIf="!last" md-inset></md-divider>
+          </ng-template>
+        </md-list>
+      </ng-template>
+    </md-card>
+  </td-layout-manage-list>
+  <button md-fab hide-gt-md id="right-side" class="mat-fab-bottom-right" aria-label="New Task" (click)='switchFab()'>
+    <md-icon>menu</md-icon>
+  </button>
+  <button md-mini-fab hide-gt-md id="menu5" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
+    class="mini" mdTooltip="All blogs" mdTooltipPosition="before">
+       <md-icon>forum</md-icon>
+    </button>
+  <button md-mini-fab hide-gt-md id="menu4" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
+    class="mini" mdTooltip="Timeline Blogs" mdTooltipPosition="before">
+       <md-icon>timeline</md-icon>
+    </button>
+  <button md-mini-fab hide-gt-md id="menu3" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
+    class="mini" mdTooltip="TestManagement" mdTooltipPosition="before">
+       <md-icon>filter_1</md-icon>
+    </button>
+  <button md-mini-fab hide-gt-md id="menu2" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
+    class="mini" mdTooltip="Plugin" mdTooltipPosition="before">
+       <md-icon>filter_2</md-icon>
+    </button>
+  <button md-mini-fab hide-gt-md id="menu1" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
+    class="mini" mdTooltip="Blog" mdTooltipPosition="before">
+       <md-icon>filter_3</md-icon>
+    </button>
+
+</td-layout-nav>

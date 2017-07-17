@@ -73,7 +73,7 @@ const routes: Routes = [
                 path: 'form',
                 component: FormComponent,
             },
-            { path: '', loadChildren: './users/blogs.module#BlogsModule' },
+            { path: '', loadChildren: './blogs/blogs.module#BlogsModule' },
         ],
     },
 ];

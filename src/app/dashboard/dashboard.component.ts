@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, ElementRef } from '@angular/core';
+
+import { tick } from '@angular/core/testing';
 
 import { Title } from '@angular/platform-browser';
 
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
-import { BlogService, IUser } from '../users';
+import { BlogService, IUser } from '../blogs';
+
+import { routes } from '../shared/routes';
 
 import { ItemsService, ProductsService, AlertsService, WindowRefService } from '../../services';
 
@@ -21,7 +25,7 @@ export interface IStackLogos {
   styleUrls: ['./dashboard.component.scss'],
   viewProviders: [ItemsService, ProductsService, AlertsService, WindowRefService],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   logos: IStackLogos[] = [
     { name: 'angular', logo: 'assets:angular' },
     { name: 'spring', logo: 'assets:spring' },
@@ -32,59 +36,57 @@ export class DashboardComponent implements OnInit {
     { name: 'covalent', logo: 'assets:covalent-mark' },
     { name: 'elastest', logo: 'assets:elastest' },
   ];
-  items: Object[];
-  users: IUser[];
-  products: Object[];
-  alerts: Object[];
 
-  // Chart
-  single: any[];
-  multi: any[];
-
-  view: any[] = [700, 400];
-
-  // options
-  showXAxis: boolean = true;
-  showYAxis: boolean = true;
-  gradient: boolean = false;
-  showLegend: boolean = false;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = '';
-  showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Sales';
-
-  colorScheme: any = {
-    domain: ['#1565C0', '#2196F3', '#81D4FA', '#FF9800', '#EF6C00'],
-  };
-
-  // line, area
-  autoScale: boolean = true;
+  routes: Object[];
+  hasScrollYet: boolean = false;
+  scrollToZ: boolean = false;
+  fabToggle: boolean = false;
 
   constructor(private _titleService: Title,
     private _itemsService: ItemsService,
     private _BlogService: BlogService,
     private _alertsService: AlertsService,
     private _productsService: ProductsService,
-    private _loadingService: TdLoadingService) {
-    // Chart
-    this.multi = multi.map((group: any) => {
-      group.series = group.series.map((dataItem: any) => {
-        dataItem.name = new Date(dataItem.name);
-        return dataItem;
-      });
-      return group;
-    });
-  }
+    private _loadingService: TdLoadingService,
+    private _winService: WindowRefService,
+    private _ngzone: NgZone,
+    private el: ElementRef) { }
 
   ngOnInit(): void {
     this._titleService.setTitle('TestManagement Blog');
+    this.routes = routes;
+    // NgZone to catch scroll events
+    this._ngzone.runOutsideAngular(() => {
+      window.addEventListener('scroll', this.scroll, true);
+    });
   }
 
-  // ngx transform using covalent digits pipe
-  axisDigits(val: any): any {
-    return new TdDigitsPipe().transform(val);
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.scroll, true);
+    this.hasScrollYet = !this.hasScrollYet;
   }
 
+  scroll = (evento: any): void => {
+    this._ngzone.run(() => {
+      if (!this.hasScrollYet) {
+        this.hasScrollYet = !this.hasScrollYet;
+      }
+      if (this.el.nativeElement.querySelector('.md-content').scrollTop >= 350) {
+        this.fabToggle = true;
+      } else {
+        if (this.el.nativeElement.querySelector('.md-content').scrollTop === 0) {
+          this.scrollToZ = false;
+        }
+        this.fabToggle = false;
+      }
+    });
+  }
 
+  scrollToZero(): void {
+    this.scrollToZ = true;
+    // this.el.nativeElement.querySelector('.md-content').scrollTop = 0; //Hard jump
+    this.el.nativeElement.querySelector('#mainComponent-main').scrollIntoView({ behaviour: 'smooth' });
+
+  }
 
 }

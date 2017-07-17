@@ -14,7 +14,9 @@ import { routedComponents, AppRoutingModule } from './app-routing.module';
 
 import { SharedModule } from './shared/shared.module';
 
-import { USER_PROVIDER, USERS_API } from './users';
+import { WindowRefService } from '../services/window.service';
+
+import { USER_PROVIDER, USERS_API } from './blogs';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -44,6 +46,7 @@ export function getAPI(): string {
   ], // modules needed to run this module
   providers: [
     httpInterceptorProviders,
+    WindowRefService,
     Title, {
       provide: USERS_API, useFactory: getAPI,
     }, USER_PROVIDER,

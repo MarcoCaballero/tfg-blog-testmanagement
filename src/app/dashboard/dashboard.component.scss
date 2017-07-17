@@ -74,10 +74,18 @@ $warn-light:    map-get($theme-light, warn-light);
     -webkit-font-smoothing: antialiased;
 }
 
-
-
-
-
+.fabActionsShow {
+    transition: transform ease-out 1.5s;
+    transition-duration: 1.5s;
+    animation:  SHOW 1s;
+    animation-fill-mode: forwards;
+}
+.fabActionsHide {
+    transition: transform ease-out 1.5s;
+    transition-duration: 1.5s;
+    animation:  HIDE 1s;
+    animation-fill-mode: forwards;
+}
 
 
 
@@ -86,9 +94,6 @@ $warn-light:    map-get($theme-light, warn-light);
       margin-left: 13%;
    }
 }
-
-
-
 
 @-webkit-keyframes sonarEffect {
     0% {
@@ -130,6 +135,36 @@ $warn-light:    map-get($theme-light, warn-light);
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px mat-color($accent), 0 0 0 10px rgba(255, 255, 255, 0.5);
         transform: scale(1.5);
         opacity: 0;
+    }
+}
+
+@keyframes SHOW {
+    0% {
+        visibility: hidden;
+        transform: translateY(10px);
+    }
+    80% {
+        visibility: visible;
+        transform: translateY(-15px);
+    }
+    100% {
+        visibility: visible;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes HIDE {
+  0% {
+        visibility: visible;
+        transform: translateY(-20px);
+    }
+    80% {
+        visibility: hidden;
+        transform: translateY(0px);
+    }
+    100% {
+        visibility: hidden;
+        transform: translateY(15px);
     }
 }
 

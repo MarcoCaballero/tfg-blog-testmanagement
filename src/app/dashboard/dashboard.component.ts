@@ -67,14 +67,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   scroll = (evento: any): void => {
+    const scrollTop: number = this.el.nativeElement.querySelector('.md-content').scrollTop;
     this._ngzone.run(() => {
-      if (!this.hasScrollYet) {
+
+      if (!this.hasScrollYet && scrollTop > 340) {
         this.hasScrollYet = !this.hasScrollYet;
       }
-      if (this.el.nativeElement.querySelector('.md-content').scrollTop >= 350) {
+      if (scrollTop >= 350) {
         this.fabToggle = true;
       } else {
-        if (this.el.nativeElement.querySelector('.md-content').scrollTop === 0) {
+        if (scrollTop === 0) {
           this.scrollToZ = false;
         }
         this.fabToggle = false;

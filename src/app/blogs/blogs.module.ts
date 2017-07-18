@@ -7,7 +7,7 @@ import { MdSnackBarModule, MdIconModule, MdListModule, MdTooltipModule, MdCardMo
          MdToolbarModule, MdInputModule, MdSlideToggleModule, MdMenuModule } from '@angular/material';
 
 import { CovalentLoadingModule, CovalentDialogsModule, CovalentMediaModule, CovalentLayoutModule,
-         CovalentSearchModule, CovalentCommonModule, CovalentExpansionPanelModule } from '@covalent/core';
+         CovalentSearchModule, CovalentCommonModule, CovalentExpansionPanelModule, CovalentChipsModule  } from '@covalent/core';
 
 import { CovalentMarkdownModule } from '@covalent/markdown';
 
@@ -50,6 +50,7 @@ export { BlogsComponent, BlogsFormComponent, BlogService, IUser, USER_PROVIDER, 
     CovalentCommonModule,
     CovalentExpansionPanelModule,
     CovalentMarkdownModule,
+    CovalentChipsModule,
     // extra
     userRoutes,
   ], // modules needed to run this module

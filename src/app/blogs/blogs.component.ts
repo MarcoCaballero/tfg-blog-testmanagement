@@ -1,8 +1,8 @@
-import { Component, AfterViewInit, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MdSnackBar } from '@angular/material';
 
-import { TdLoadingService, TdDialogService, TdMediaService } from '@covalent/core';
+import { TdLoadingService, TdDialogService, TdMediaService, TdExpansionPanelComponent } from '@covalent/core';
 
 import { BlogService, IUser } from './services/blog.service';
 
@@ -14,10 +14,33 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./blogs.component.scss'],
 })
 export class BlogsComponent implements AfterViewInit, OnInit {
+  @ViewChild('exppan1') expPan1: TdExpansionPanelComponent;
+  disabled: boolean = false;
+  chipAddition: boolean = false;
+  chipRemoval: boolean = false;
 
+  f1Model: string[] = [
+    'Angular',
+    'Angular-Material',
+    'Spring',
+    'MySQL',
+    'Teradata covalent',
+  ];
+  f2Model: string[] = [
+    'Java',
+    'Testlink-Java-Api',
+    'Maven',
+    'Elastest',
+  ];
+  f3Model: string[] = [
+    'Angular',
+    'Angular-Material',
+    'JSON',
+    'MarkDown',
+    'Teradata covalent',
+  ];
   users: IUser[];
   filteredUsers: IUser[];
-  disabled: boolean = false;
   fabToggle: boolean = false;
   firsTimeFab: boolean = true;
 
@@ -52,8 +75,13 @@ export class BlogsComponent implements AfterViewInit, OnInit {
 
   filterUsers(displayName: string = ''): void {
     this.filteredUsers = this.users.filter((user: IUser) => {
+      (displayName === '') ? this.expPan1.close() : this.expPan1.open();
       return user.displayName.toLowerCase().indexOf(displayName.toLowerCase()) > -1;
     });
+  }
+
+  clear(): void {
+    this.expPan1.close();
   }
 
   async load(): Promise<void> {
@@ -68,4 +96,4 @@ export class BlogsComponent implements AfterViewInit, OnInit {
     }
   }
 
- }
+}

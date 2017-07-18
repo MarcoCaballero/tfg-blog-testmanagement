@@ -60,8 +60,7 @@
         <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
                         <span class="md-title">Blogs by project</span>
         </span>
-        <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm tc-blue-700" placeholder="Search here the title...." (searchDebounce)="filterUsers($event)" (clear)="clear($event)"
-          flex>
+        <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm tc-blue-700" placeholder="Search here the title...." (searchDebounce)="filterUsers($event)"  flex>
         </td-search-box>
       </div>
       <md-divider></md-divider>

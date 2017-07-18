@@ -80,10 +80,6 @@ export class BlogsComponent implements AfterViewInit, OnInit {
     });
   }
 
-  clear(): void {
-    this.expPan1.close();
-  }
-
   async load(): Promise<void> {
     try {
       this._loadingService.register('users.list');

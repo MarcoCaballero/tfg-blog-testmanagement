@@ -7,63 +7,26 @@ $accent:        map-get($theme, accent);
 $accent-light:  map-get($theme-light, accent-light);
 $warn:          map-get($theme, warn);
 $warn-light:    map-get($theme-light, warn-light);
-$break-small:   604px;
-$break-small-p1:   318px; //37
-$break-small-p2:   409px; //24
-$break-small-p3:   467px; //14
-$break-small-p4:   609px; //14 && 86px
+$break-small: 430px;
 
 /* :host /deep/ lets shadowdom style child elements */
 :host /deep/ {
-    [_ngcontent-c16].td-expansion-summary {
-        @media screen and (min-width: $break-small-p1) {
-            padding: 37px 2px 2px 2px;
-            min-height: 120px !important;
-        }
-        @media screen and (min-width: $break-small-p2) {
-            padding: 24px 2px 2px 2px;
-            min-height: 120px !important;
-        }
-        @media screen and (min-width: $break-small-p3) {
-            padding: 14px 2px 2px 2px;
-            min-height: 120px !important;
-        }
-        @media screen and (min-width: $break-small-p4) {
-            min-height: 90px !important;
-            padding: 14px 2px 2px 2px;
-        }
+    .push-left-xxl {
+        margin-left: 40% !important;
     }
-    [_nghost-c17] .td-chips-wrapper[_ngcontent-c17] {
-         @media screen and (max-width: $break-small) {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            min-height: 39px;
-          }
-         @media screen and (min-width: $break-small) {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: flex-start;
-            min-height: 39px;
-         }
-    }
-}
+ }
 
 
-.menu-item-own {
-    margin-left: -16px;
-}
 
 .fab-actions button {
      margin-top: 8px;
 }
-.column {
-    max-width: 43px;
-}
 
 #right-side{
+    @media screen and (max-height: $break-small) {
+        visibility: hidden;
+    }
+
     transition: transform ease-out 0.5s;
     transition-duration: 0.5s;
     z-index: 2;
@@ -81,6 +44,12 @@ $break-small-p4:   609px; //14 && 86px
     bottom: 23px;
     top: auto;
     left: auto;
+    @media screen and (max-height: $break-small) {
+        visibility: hidden;
+    }
+    &.active {
+        color:  mat-color(mat-palette($mat-orange, 400))
+    }
 }
 
 .fabActionsShow {

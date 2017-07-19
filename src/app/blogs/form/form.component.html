@@ -1,22 +1,4 @@
-<md-toolbar>
-  <a (click)="goBack()" class="a-pointer">
-    <md-icon>arrow_back</md-icon>
-  </a>
-  <md-icon class="push" style="height:auto;width:125px;" svgIcon="assets:testmanagement-light-v2"></md-icon>
-  <div td-toolbar-content layout="row" layout-align="center center" flex>
-    <span></span>
-    <span flex></span>
-    <a md-icon-button mdTooltip="Github" href="https://github.com/MarcoCaballero/tfg-blog-testmanagement" target="_blank">
-      <md-icon svgIcon="assets:github"></md-icon>
-    </a>
-    <a md-icon-button mdTooltip="LinkedIn" href="https://www.linkedin.com/in/marco-caballero/" target="_blank">
-      <md-icon svgIcon="assets:linkedin"></md-icon>
-    </a>
-  </div>
-</md-toolbar>
 <td-layout-card-over color="primary" cardWidth="85" cardTitle="Blog :title" cardSubtitle="fill form to {{action}} user">
-
-  <md-divider></md-divider>
   <md-card-content>
     <ng-template tdLoading="blog.id">
       <md-list class="will-load">

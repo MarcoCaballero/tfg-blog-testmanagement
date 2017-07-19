@@ -4,7 +4,7 @@ import {
   async,
   ComponentFixture,
 } from '@angular/core/testing';
-import {APP_BASE_HREF} from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { XHRBackend, Response, ResponseOptions } from '@angular/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -104,7 +104,6 @@ describe('Component: ProductOverview', () => {
 
       expect(element.querySelector('.item-list')).toBeTruthy();
       expect(element.querySelector('.user-list')).toBeTruthy();
-      testComponent.ngAfterViewInit();
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {

@@ -13,6 +13,12 @@
     [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
     <md-toolbar td-sidenav-content>
       <span>Blogs</span>
+      <span flex></span>
+      <span hide-gt-md>
+          <button class="push-left-xxl" md-icon-button (click)="!media.query('gt-sm') && manageList.close()">
+            <md-icon color="primary">cancel</md-icon>
+          </button>
+      </span>
     </md-toolbar>
     <md-nav-list td-sidenav-content>
       <a md-list-item md-ripple (click)="!media.query('gt-sm') && manageList.close()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
@@ -20,7 +26,8 @@
         <md-icon md-list-icon>forum</md-icon>
         All Blogs
       </a>
-      <a md-list-item md-ripple (click)="!media.query('gt-sm') && manageList.close()">
+      <a md-list-item md-ripple (click)="!media.query('gt-sm') && manageList.close()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
+        [routerLink]="['timeline']">
         <md-icon md-list-icon>timeline</md-icon>
         Timeline Blogs
       </a>
@@ -40,186 +47,32 @@
     <div td-toolbar-content layout="row" layout-align="start center" flex>
       <span>All Blogs</span>
       <span flex></span>
-      <span>
-          <button md-icon-button [md-menu-trigger-for]="menu">
-          <md-icon>more_vert</md-icon>
-          </button>
-          <md-menu x-position="before" #menu="mdMenu">
-              <a md-menu-item>
-                <md-icon>info_outline</md-icon> Info
-              </a>
-              <a md-menu-item>
-                <md-icon>info_outline</md-icon> Info
-              </a>
-          </md-menu>
-      </span>
     </div>
-    <md-card class="push-bottom-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
-      <!-- <td-search-box class="push-left push-right" placeholder="search here ..." [alwaysVisible]="true" (searchDebounce)="filterUsers($event)"></td-search-box> -->
-      <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
-        <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
-                        <span class="md-title">Blogs by project</span>
-        </span>
-        <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm tc-blue-700" placeholder="Search here the title...." (searchDebounce)="filterUsers($event)"  flex>
-        </td-search-box>
-      </div>
-      <md-divider></md-divider>
-      <!-- first panel -->
-      <td-expansion-panel #exppan1 [expand]="false">
-        <ng-template td-expansion-panel-label>
-          <md-icon>filter_1</md-icon>
-          <span>TestManagement</span>
-        </ng-template>
-        <ng-template td-expansion-panel-sublabel>
-          <span>16 Blogs about the TestManagement application.</span>
-        </ng-template>
-        <td-expansion-summary>
-          <md-list>
-            <md-list-item>
-              <td-chips [(ngModel)]="f1Model" [chipAddition]="chipAddition" [chipRemoval]="chipRemoval" [disabled]="disabled">
-                <ng-template td-chip let-chip="chip">
-                  <div [ngClass]="{'bgc-red-700':chip.substring(0, 3)=='Ang', 'bgc-green-700':chip=='Spring', 'bgc-teal-700': chip.substring(0, 3)!='Ang' && chip!='Spring'}"
-                    class="tc-grey-100" td-chip-avatar>{{chip.substring(0, 1).toUpperCase()}}</div> {{chip}}
-                </ng-template>
-              </td-chips>
-            </md-list-item>
-          </md-list>
-        </td-expansion-summary>
-        <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
-          <md-list>
-            <md-list-item>
-              <md-icon md-list-avatar>person</md-icon>
-              <h3 md-line> {{user.displayName}} </h3>
-              <p md-line> {{user.email}} </p>
-              <p md-line hide-gt-md class="md-caption"> last login: {{ user.lastAccess | timeAgo }} </p>
-              <span flex></span>
-              <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
-                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.created | date }} </div>
-                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.lastAccess | timeAgo }} </div>
-              </span>
-              <span>
-                  <button md-icon-button  [routerLink]="[user.id, 'edit']">
-                  <md-icon>keyboard_arrow_right</md-icon>
-                  </button>
-              </span>
-            </md-list-item>
-          </md-list>
-          <md-divider *ngIf="!last" md-inset></md-divider>
-        </ng-template>
-      </td-expansion-panel>
-      <!-- ./first panel -->
-      <!-- second panel -->
-      <td-expansion-panel [expand]="false">
-        <ng-template td-expansion-panel-label>
-          <md-icon>filter_2</md-icon>
-          <span>Plugin Teslink - Elastest</span>
-        </ng-template>
-        <ng-template td-expansion-panel-sublabel>
-          <span>16 Blogs about the TestManagement application.</span>
-        </ng-template>
-        <td-expansion-summary>
-          <md-list>
-            <md-list-item>
-              <td-chips [(ngModel)]="f2Model" [chipAddition]="chipAddition" [chipRemoval]="chipRemoval" [disabled]="disabled">
-                <ng-template td-chip let-chip="chip">
-                  <div [ngClass]="{'bgc-red-700':chip.substring(0, 3)=='Ang', 'bgc-green-700':chip=='Spring', 'bgc-teal-700': chip.substring(0, 3)!='Ang' && chip!='Spring'}"
-                    class="tc-grey-100" td-chip-avatar>{{chip.substring(0, 1).toUpperCase()}}</div> {{chip}}
-                </ng-template>
-              </td-chips>
-            </md-list-item>
-          </md-list>
-        </td-expansion-summary>
-        <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
-          <md-list>
-            <md-list-item>
-              <md-icon md-list-avatar>person</md-icon>
-              <h3 md-line> {{user.displayName}} </h3>
-              <p md-line> {{user.email}} </p>
-              <p md-line hide-gt-md class="md-caption"> last login: {{ user.lastAccess | timeAgo }} </p>
-              <span flex></span>
-              <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
-                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.created | date }} </div>
-                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.lastAccess | timeAgo }} </div>
-              </span>
-              <span>
-                  <button md-icon-button  [routerLink]="[user.id, 'edit']">
-                  <md-icon>keyboard_arrow_right</md-icon>
-                  </button>
-              </span>
-            </md-list-item>
-          </md-list>
-          <md-divider *ngIf="!last" md-inset></md-divider>
-        </ng-template>
-      </td-expansion-panel>
-      <!-- second panel -->
-      <!-- ./third panel -->
-      <td-expansion-panel [expand]="false">
-        <ng-template td-expansion-panel-label>
-          <md-icon>filter_3</md-icon>
-          <span>TestManagement Blog</span>
-        </ng-template>
-        <ng-template td-expansion-panel-sublabel>
-          <span>16 Blogs about the TestManagement application.</span>
-        </ng-template>
-        <td-expansion-summary>
-          <md-list>
-            <md-list-item>
-              <td-chips [(ngModel)]="f3Model" [chipAddition]="chipAddition" [chipRemoval]="chipRemoval" [disabled]="disabled">
-                <ng-template td-chip let-chip="chip">
-                  <div [ngClass]="{'bgc-red-700':chip.substring(0, 3)=='Ang', 'bgc-green-700':chip=='Spring', 'bgc-teal-700': chip.substring(0, 3)!='Ang' && chip!='Spring'}"
-                    class="tc-grey-100" td-chip-avatar>{{chip.substring(0, 1).toUpperCase()}}</div> {{chip}}
-                </ng-template>
-              </td-chips>
-            </md-list-item>
-          </md-list>
-        </td-expansion-summary>
-        <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
-          <md-list>
-            <md-list-item>
-              <md-icon md-list-avatar>person</md-icon>
-              <h3 md-line> {{user.displayName}} </h3>
-              <p md-line> {{user.email}} </p>
-              <p md-line hide-gt-md class="md-caption"> last login: {{ user.lastAccess | timeAgo }} </p>
-              <span flex></span>
-              <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
-                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.created | date }} </div>
-                  <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.lastAccess | timeAgo }} </div>
-              </span>
-              <span>
-                  <button md-icon-button  [routerLink]="[user.id, 'edit']">
-                  <md-icon>keyboard_arrow_right</md-icon>
-                  </button>
-              </span>
-            </md-list-item>
-          </md-list>
-          <md-divider *ngIf="!last" md-inset></md-divider>
-        </ng-template>
-      </td-expansion-panel>
-      <!-- ./third panel -->
-    </md-card>
+    <router-outlet></router-outlet>
   </td-layout-manage-list>
   <button md-fab hide-gt-md id="right-side" class="mat-fab-bottom-right" aria-label="New Task" (click)='switchFab()'>
     <md-icon>menu</md-icon>
   </button>
   <button md-mini-fab hide-gt-md id="menu5" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
-    class="mini" mdTooltip="All blogs" mdTooltipPosition="before">
+    class="mini" mdTooltip="All blogs" mdTooltipPosition="before" [routerLink]="['/blogs']" [routerLinkActive]="['active']"
+    [routerLinkActiveOptions]="{exact:true}" (click)="switchFab()">
        <md-icon>forum</md-icon>
     </button>
   <button md-mini-fab hide-gt-md id="menu4" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
-    class="mini" mdTooltip="Timeline Blogs" mdTooltipPosition="before">
+    class="mini" mdTooltip="Timeline Blogs" mdTooltipPosition="before" [routerLink]="['timeline']" [routerLinkActive]="['active']"
+    [routerLinkActiveOptions]="{exact:true}" (click)="switchFab()">
        <md-icon>timeline</md-icon>
     </button>
   <button md-mini-fab hide-gt-md id="menu3" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
-    class="mini" mdTooltip="TestManagement" mdTooltipPosition="before">
+    class="mini" mdTooltip="TestManagement" mdTooltipPosition="before" (click)="switchFab()">
        <md-icon>filter_1</md-icon>
     </button>
   <button md-mini-fab hide-gt-md id="menu2" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
-    class="mini" mdTooltip="Plugin" mdTooltipPosition="before">
+    class="mini" mdTooltip="Plugin" mdTooltipPosition="before" (click)="switchFab()">
        <md-icon>filter_2</md-icon>
     </button>
   <button md-mini-fab hide-gt-md id="menu1" color="primary" *ngIf="!firsTimeFab" [ngClass]="{'fabActionsHide':!fabToggle,'fabActionsShow':fabToggle}"
-    class="mini" mdTooltip="Blog" mdTooltipPosition="before">
+    class="mini" mdTooltip="Blog" mdTooltipPosition="before" (click)="switchFab()">
        <md-icon>filter_3</md-icon>
     </button>
-
 </td-layout-nav>

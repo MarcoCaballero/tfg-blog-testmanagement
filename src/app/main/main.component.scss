@@ -30,4 +30,23 @@ $warn-light:    map-get($theme-light, warn-light);
             min-width: 58%;
         }
     }
+    .main-menu-item {
+            color:  mat-color($primary);
+            md-icon {
+                color:  mat-color($primary);
+            }
+        &.active {
+            color:  mat-color($primary);
+            md-icon {
+                color:  mat-color($accent);
+            }
+            background: rgba(25, 118, 210, 0.26);
+        }
+        &:hover {
+            background: rgba(25, 118, 210, 0.16) !important;
+        }
+        &:focus {
+            background: rgba(25, 118, 210, 0.26) !important;
+        }
+    }
 }

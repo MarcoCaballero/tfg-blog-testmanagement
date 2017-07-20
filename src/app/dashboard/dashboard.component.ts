@@ -8,7 +8,7 @@ import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
 import { BlogService, IUser } from '../blogs';
 
-import { routes } from '../shared/routes';
+import { routes, IRoutesObject } from '../shared/routes';
 
 import { ItemsService, ProductsService, AlertsService, WindowRefService } from '../../services';
 
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     { name: 'elastest', logo: 'assets:elastest' },
   ];
 
-  routes: Object[];
+  routes: IRoutesObject[];
   hasScrollYet: boolean = false;
   scrollToZ: boolean = false;
   fabToggle: boolean = false;

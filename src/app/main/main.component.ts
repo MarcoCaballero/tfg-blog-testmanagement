@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { routes } from '../shared/routes';
+import { routes, IRoutesObject } from '../shared/routes';
 
 @Component({
   selector: 'tmblog-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
 
-  routes: Object[];
+  routes: IRoutesObject[];
+  routesExactTrue: IRoutesObject[];
+  routesExactFalse: IRoutesObject[];
 
   constructor(private _router: Router) {
     this.routes = routes;
+  }
+
+  ngOnInit(): void {
+    this.routesExactTrue = this.routes.slice(0, 1);
+    this.routesExactFalse = this.routes.slice(1, this.routes.length);
   }
 
   logout(): void {

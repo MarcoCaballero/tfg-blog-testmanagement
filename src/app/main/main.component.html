@@ -1,9 +1,17 @@
 <td-layout #layout>
   <td-navigation-drawer logo="assets:testmanagement-light-v2">
     <md-nav-list>
-      <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
-        <a md-list-item [routerLink]="[item.route]" (click)="layout.close()">
-          <md-icon>{{item.icon}}</md-icon>{{item.title}}</a>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="routesExactTrue">
+        <a md-list-item md-ripple class="main-menu-item" [routerLink]="[item.route]" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
+          (click)="layout.close()">
+          <md-icon>{{item.icon}}</md-icon>{{item.title}}
+        </a>
+      </ng-template>
+      <ng-template let-item let-last="last" ngFor [ngForOf]="routesExactFalse">
+        <a md-list-item md-ripple class="main-menu-item" [routerLink]="[item.route]" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}"
+          (click)="layout.close()">
+          <md-icon>{{item.icon}}</md-icon>{{item.title}}
+        </a>
       </ng-template>
     </md-nav-list>
   </td-navigation-drawer>

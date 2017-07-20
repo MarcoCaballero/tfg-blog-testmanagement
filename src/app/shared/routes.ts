@@ -16,7 +16,7 @@ export const routes: IRoutesObject[] = [{
     icon: 'description',
 }, {
     title: 'About',
-    route: '/products',
+    route: '/product',
     routeOptions: '{exact:false}',
     icon: 'face',
 },

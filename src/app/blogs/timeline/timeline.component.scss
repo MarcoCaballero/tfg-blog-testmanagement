@@ -1,0 +1,28 @@
+@import '../../../theme';
+
+/* Variables */
+$primary:       map-get($theme, primary);
+$primary-light: map-get($theme-light, primary-light);
+$accent:        map-get($theme, accent);
+$accent-light:  map-get($theme-light, accent-light);
+$warn:          map-get($theme, warn);
+$warn-light:    map-get($theme-light, warn-light);
+$break-small:   604px;
+$break-small-p1:   318px; //37
+$break-small-p2:   409px; //24
+$break-small-p3:   467px; //14
+$break-small-p4:   609px; //14 && 86px
+
+/* :host /deep/ lets shadowdom style child elements */
+:host /deep/ {
+
+    td-steps .td-step-header .td-step-label-wrapper.mat-inactive, td-steps .td-step-header .td-step-label-wrapper.mat-inactive * {
+        color: rgb(25, 118, 210) !important;
+        // font-style: italic;
+    }
+
+    td-steps .td-circle.mat-inactive {
+        background-color: rgb(25, 118, 210) !important;
+    }
+
+}

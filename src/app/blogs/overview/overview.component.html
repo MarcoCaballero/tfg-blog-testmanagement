@@ -1,0 +1,122 @@
+<md-card class="push-bottom-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+    <!-- <td-search-box class="push-left push-right" placeholder="search here ..." [alwaysVisible]="true" (searchDebounce)="filterUsers($event)"></td-search-box> -->
+    <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+        <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+                        <span class="md-title">Blogs by project</span>
+        </span>
+        <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm tc-blue-700" placeholder="Search here the title...."
+            (searchDebounce)="filterUsers($event)" flex>
+        </td-search-box>
+    </div>
+    <md-divider></md-divider>
+    <md-card-content>
+        <ng-template tdLoading="blogs.overview">
+            <md-list class="will-load">
+                <div class="md-padding" *ngIf="users?.length === 0" layout="row" layout-align="center center">
+                    <h3>No users to display.</h3>
+                </div>
+                <!-- first panel -->
+                <td-expansion-panel #exppan1 [expand]="false">
+                    <ng-template td-expansion-panel-label>
+                        <md-icon>filter_1</md-icon>
+                        <span>TestManagement</span>
+                    </ng-template>
+                    <ng-template td-expansion-panel-sublabel>
+                        <span>16 Blogs about the TestManagement application.</span>
+                    </ng-template>
+                    <td-expansion-summary>
+                        <md-list>
+                            <md-list-item>
+                                <td-chips [(ngModel)]="f1Model" [chipAddition]="chipAddition" [chipRemoval]="chipRemoval" [disabled]="disabled">
+                                    <ng-template td-chip let-chip="chip">
+                                        <div [ngClass]="{'bgc-red-700':chip.substring(0, 3)=='Ang', 'bgc-green-700':chip=='Spring', 'bgc-teal-700': chip.substring(0, 3)!='Ang' && chip!='Spring'}"
+                                            class="tc-grey-100" td-chip-avatar>{{chip.substring(0, 1).toUpperCase()}}</div> {{chip}}
+                                    </ng-template>
+                                </td-chips>
+                            </md-list-item>
+                        </md-list>
+                    </td-expansion-summary>
+                    <md-list *ngIf="enableFail" style="padding: 15px 4px 15px 4px;">
+                        <md-list-item>
+                            <td-message label="Not found! Try with another title ..." class="bgc-grey-200 tc-blue-700" icon="error" style="min-width: 100%;">
+
+                            </td-message>
+                        </md-list-item>
+                    </md-list>
+                    <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
+                        <tmblog-blogs-item [user]="user"></tmblog-blogs-item>
+                        <md-divider *ngIf="!last" md-inset></md-divider>
+                    </ng-template>
+                </td-expansion-panel>
+                <!-- ./first panel -->
+                <!-- second panel -->
+                <td-expansion-panel #exppan2 [expand]="false">
+                    <ng-template td-expansion-panel-label>
+                        <md-icon>filter_2</md-icon>
+                        <span>Plugin Teslink - Elastest</span>
+                    </ng-template>
+                    <ng-template td-expansion-panel-sublabel>
+                        <span>16 Blogs about the TestManagement application.</span>
+                    </ng-template>
+                    <td-expansion-summary>
+                        <md-list class="chips-four">
+                            <md-list-item>
+                                <td-chips [(ngModel)]="f2Model" [chipAddition]="chipAddition" [chipRemoval]="chipRemoval" [disabled]="disabled">
+                                    <ng-template td-chip let-chip="chip">
+                                        <div [ngClass]="{'bgc-red-700':chip.substring(0, 3)=='Ang', 'bgc-green-700':chip=='Spring', 'bgc-teal-700': chip.substring(0, 3)!='Ang' && chip!='Spring'}"
+                                            class="tc-grey-100" td-chip-avatar>{{chip.substring(0, 1).toUpperCase()}}</div> {{chip}}
+                                    </ng-template>
+                                </td-chips>
+                            </md-list-item>
+                        </md-list>
+                    </td-expansion-summary>
+                    <md-list *ngIf="enableFail" style="padding: 15px 4px 15px 4px;">
+                        <md-list-item>
+                            <td-message label="Not found! Try with another title ..." class="bgc-grey-200 tc-blue-700" icon="error" style="min-width: 100%;">
+
+                            </td-message>
+                        </md-list-item>
+                    </md-list>
+                    <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
+                         <tmblog-blogs-item [user]="user"></tmblog-blogs-item>
+                        <md-divider *ngIf="!last" md-inset></md-divider>
+                    </ng-template>
+                </td-expansion-panel>
+                <!-- second panel -->
+                <!-- ./third panel -->
+                <td-expansion-panel #exppan3 [expand]="false">
+                    <ng-template td-expansion-panel-label>
+                        <md-icon>filter_3</md-icon>
+                        <span>TestManagement Blog</span>
+                    </ng-template>
+                    <ng-template td-expansion-panel-sublabel>
+                        <span>16 Blogs about the TestManagement application.</span>
+                    </ng-template>
+                    <td-expansion-summary>
+                        <md-list>
+                            <md-list-item>
+                                <td-chips [(ngModel)]="f3Model" [chipAddition]="chipAddition" [chipRemoval]="chipRemoval" [disabled]="disabled">
+                                    <ng-template td-chip let-chip="chip">
+                                        <div [ngClass]="{'bgc-red-700':chip.substring(0, 3)=='Ang', 'bgc-green-700':chip=='Spring', 'bgc-teal-700': chip.substring(0, 3)!='Ang' && chip!='Spring'}"
+                                            class="tc-grey-100" td-chip-avatar>{{chip.substring(0, 1).toUpperCase()}}</div> {{chip}}
+                                    </ng-template>
+                                </td-chips>
+                            </md-list-item>
+                        </md-list>
+                    </td-expansion-summary>
+                    <md-list *ngIf="enableFail" style="padding: 15px 4px 15px 4px;">
+                        <md-list-item>
+                            <td-message label="Not found !! Try with another title ..." class="bgc-grey-200 tc-blue-700" icon="error" style="min-width: 100%;">
+                            </td-message>
+                        </md-list-item>
+                    </md-list>
+                    <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
+                        <tmblog-blogs-item [user]="user"></tmblog-blogs-item>
+                        <md-divider *ngIf="!last" md-inset></md-divider>
+                    </ng-template>
+                </td-expansion-panel>
+                <!-- ./third panel -->
+            </md-list>
+        </ng-template>
+    </md-card-content>
+</md-card>

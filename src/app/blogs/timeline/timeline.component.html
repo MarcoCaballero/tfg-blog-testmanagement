@@ -1,0 +1,30 @@
+<md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+    <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
+        <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
+                        <span class="md-title">Timeline Blogs</span>
+        </span>
+        <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm tc-blue-700" placeholder="Search here the title...."
+            (searchDebounce)="filterUsers($event)" flex>
+        </td-search-box>
+    </div>
+    <md-divider></md-divider>
+    <md-card-content>
+        <ng-template tdLoading="blogs.timeline">
+            <md-list class="will-load">
+                <div class="md-padding" *ngIf="filteredUsers?.length === 0" layout="row" layout-align="center center">
+                    <h3>No users to display.</h3>
+                </div>
+                <td-steps>
+                    <ng-template ngFor [ngForOf]="[1,2,3,4,5,6,7,8,9]">
+                        <td-step label="July, 2017" sublabel="19 Blogs" [disabled]="disabled">
+                            <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
+                                 <tmblog-blogs-item [user]="user"></tmblog-blogs-item>
+                                <md-divider *ngIf="!last" md-inset></md-divider>
+                            </ng-template>
+                        </td-step>
+                    </ng-template>
+                </td-steps>
+            </md-list>
+        </ng-template>
+    </md-card-content>
+</md-card>

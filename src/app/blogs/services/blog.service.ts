@@ -4,14 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { HttpInterceptorService, RESTService } from '@covalent/http';
 
-export interface IUser {
-  displayName: string;
-  id: string;
-  email: string;
-  created: Date;
-  lastAccess: Date;
-  siteAdmin: number;
-}
+import { IUser } from '../data/interfaces';
 
 export class BlogService extends RESTService<IUser> {
 
@@ -24,16 +17,16 @@ export class BlogService extends RESTService<IUser> {
 
   staticQuery(): Observable<IUser[]> {
     return this._http.get('data/users.json')
-    .map((res: Response) => {
-      return res.json();
-    });
+      .map((res: Response) => {
+        return res.json();
+      });
   }
 }
 
 export const USERS_API: InjectionToken<string> = new InjectionToken<string>('USERS_API');
 
 export function USER_PROVIDER_FACTORY(
-    parent: BlogService, interceptorHttp: HttpInterceptorService, api: string): BlogService {
+  parent: BlogService, interceptorHttp: HttpInterceptorService, api: string): BlogService {
   return parent || new BlogService(interceptorHttp, api);
 }
 

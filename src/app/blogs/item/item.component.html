@@ -1,0 +1,18 @@
+<md-list>
+    <md-list-item>
+        <md-icon class="blog-header" md-list-avatar svgIcon="assets:blog_head_code"></md-icon>
+        <h3 md-line> {{user.displayName}} </h3>
+        <p md-line> {{user.email}} </p>
+        <p md-line hide-gt-md class="md-caption"> last login: {{ user.lastAccess | timeAgo }} </p>
+        <span flex></span>
+        <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
+            <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.created | date }} </div>
+            <div class="md-caption tc-grey-500" flex-gt-xs="50"> {{ user.lastAccess | timeAgo }} </div>
+        </span>
+        <span>
+            <button md-icon-button  [routerLink]="[user.id, 'edit']">
+            <md-icon class="go-into">keyboard_arrow_right</md-icon>
+            </button>
+        </span>
+    </md-list-item>
+</md-list>

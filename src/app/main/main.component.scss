@@ -45,8 +45,5 @@ $warn-light:    map-get($theme-light, warn-light);
         &:hover {
             background: rgba(25, 118, 210, 0.16) !important;
         }
-        &:focus {
-            background: rgba(25, 118, 210, 0.26) !important;
-        }
     }
 }

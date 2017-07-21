@@ -2,7 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { BlogsComponent } from './blogs.component';
-import { BlogsFormComponent } from './form/form.component';
+import { BlogsDetailComponent } from './detail/detail.component';
 import { BlogTimelineComponent } from './timeline/timeline.component';
 import { BlogsOverviewComponent } from './overview/overview.component';
 
@@ -18,7 +18,7 @@ const routes: Routes = [{
   },
   {
     path: ':id/edit',
-    component: BlogsFormComponent,
+    component: BlogsDetailComponent,
   }],
 }];
 

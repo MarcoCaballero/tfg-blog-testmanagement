@@ -17,24 +17,29 @@ import { CovalentMarkdownModule } from '@covalent/markdown';
 
 import { BlogsComponent } from './blogs.component';
 
-import { BlogsFormComponent } from './form/form.component';
+import { BlogsDetailComponent } from './detail/detail.component';
 
 import { BlogsOverviewComponent } from './overview/overview.component';
 
 import { BlogTimelineComponent } from './timeline/timeline.component';
 
+import { BlogsItemComponent } from './item/item.component';
+
 import { userRoutes } from './blogs.routes';
 
-import { BlogService, IUser, USER_PROVIDER, USERS_API } from './services/blog.service';
+import { BlogService, USER_PROVIDER, USERS_API } from './services/blog.service';
 
-export { BlogsComponent, BlogsFormComponent, BlogService, IUser, USER_PROVIDER, USERS_API };
+import { IUser } from './data/interfaces';
+
+export { BlogsComponent, BlogsDetailComponent, BlogService, IUser, USER_PROVIDER, USERS_API };
 
 @NgModule({
   declarations: [
     BlogsComponent,
-    BlogsFormComponent,
+    BlogsDetailComponent,
     BlogTimelineComponent,
     BlogsOverviewComponent,
+    BlogsItemComponent,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     // angular modules

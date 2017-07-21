@@ -47,5 +47,7 @@ export class AppComponent {
       this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/docker.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'elastest',
       this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/elastest.svg'));
+    this._iconRegistry.addSvgIconInNamespace('assets', 'blog_head_code',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/blog_head_code.svg'));
   }
 }

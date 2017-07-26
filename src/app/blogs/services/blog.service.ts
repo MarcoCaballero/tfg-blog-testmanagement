@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { HttpInterceptorService, RESTService } from '@covalent/http';
 
-import { IUser } from '../data/interfaces';
+import { IUser, IBlog } from '../data/interfaces';
 
 export class BlogService extends RESTService<IUser> {
 
@@ -17,6 +17,13 @@ export class BlogService extends RESTService<IUser> {
 
   staticQuery(): Observable<IUser[]> {
     return this._http.get('data/users.json')
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  staticQuery2(): Observable<IBlog[]> {
+    return this._http.get('data/blogs.json')
       .map((res: Response) => {
         return res.json();
       });

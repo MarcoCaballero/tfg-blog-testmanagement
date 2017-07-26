@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { BlogService } from '../services/blog.service';
 
-import { IUser } from '../data/interfaces';
+import { IUser, IBlog } from '../data/interfaces';
 
 @Component({
     selector: 'tmblog-blogs-item',
@@ -11,4 +11,5 @@ import { IUser } from '../data/interfaces';
 })
 export class BlogsItemComponent {
     @Input() user: IUser;
+    @Input() blog: IBlog;
 }

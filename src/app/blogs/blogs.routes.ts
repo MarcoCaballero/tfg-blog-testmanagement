@@ -19,7 +19,12 @@ const routes: Routes = [{
   {
     path: ':id/edit',
     component: BlogsDetailComponent,
-  }],
+  },
+  {
+    path: ':project/:id',
+    component: BlogsDetailComponent,
+  },
+],
 }];
 
 export const userRoutes: ModuleWithProviders = RouterModule.forChild(routes);

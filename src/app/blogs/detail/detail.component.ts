@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MdSnackBar } from '@angular/material';
 
-import { TdDialogService, TdLoadingService } from '@covalent/core';
+import { TdDialogService, TdLoadingService, LoadingType, LoadingMode } from '@covalent/core';
 
 import { BlogService } from '../services/blog.service';
 
-import { IUser } from '../data/interfaces';
+import { IBlog } from '../data/interfaces';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -18,14 +18,12 @@ import 'rxjs/add/operator/toPromise';
 })
 export class BlogsDetailComponent implements OnInit {
 
-  users: IUser[];
-  filteredUsers: IUser[];
-  displayName: string;
-  email: string;
-  id: string;
-  admin: boolean;
-  user: IUser;
-  action: string;
+  blogs: IBlog[];
+  filteredBlogs: IBlog[];
+  loading: boolean = true;
+  blog: IBlog;
+  id: number;
+  project: string;
 
   constructor(private _BlogService: BlogService,
     private _router: Router,
@@ -39,30 +37,31 @@ export class BlogsDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._route.url.subscribe((url: any) => {
-      this.action = (url.length > 1 ? url[1].path : 'add');
-    });
-    this._route.params.subscribe((params: { id: string }) => {
+    // this._route.url.subscribe((url: any) => {
+    //   this.action = (url.length > 1 ? url[1].path : 'add');
+    // });
+    this._route.params.subscribe((params: { id: number, project: string }) => {
       this.id = params.id;
-      if (this.id) {
-        this.load();
-      }
+      this.project = params.project;
+      this.load();
     });
   }
 
   async load(): Promise<void> {
     try {
-      this._loadingService.register('blog.id');
-      this.users = await this._BlogService.query().toPromise();
+      this._loadingService.register('loadingBlog');
+      this.loading = true;
+      this.blogs = await this._BlogService.staticQuery2().toPromise();
     } catch (error) {
-      this.users = await this._BlogService.staticQuery().toPromise();
+      this.blogs = await this._BlogService.staticQuery2().toPromise();
     } finally {
-      this.filteredUsers = Object.assign([], this.users);
-      this.filteredUsers = this.users.filter((user: IUser) => {
-        return user.id.indexOf(this.id.toLowerCase()) > -1;
+      this.filteredBlogs = Object.assign([], this.blogs);
+      this.filteredBlogs = this.blogs.filter((blog: IBlog) => {
+        return blog.id.toString().toLowerCase().indexOf(this.id.toString().toLowerCase()) > -1;
       });
-      this.user = this.filteredUsers[0];
-      this._loadingService.resolve('blog.id');
+      this.blog = this.filteredBlogs[0];
+      this._loadingService.resolve('loadingBlog');
+      this.loading = false;
     }
   }
 

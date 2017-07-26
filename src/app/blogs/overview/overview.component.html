@@ -5,7 +5,7 @@
                         <span class="md-title">Blogs by project</span>
         </span>
         <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm tc-blue-700" placeholder="Search here the title...."
-            (searchDebounce)="filterUsers($event)" flex>
+            (searchDebounce)="filterBlogs($event)" flex>
         </td-search-box>
     </div>
     <md-divider></md-divider>
@@ -43,8 +43,8 @@
                             </td-message>
                         </md-list-item>
                     </md-list>
-                    <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
-                        <tmblog-blogs-item [user]="user"></tmblog-blogs-item>
+                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogs">
+                        <tmblog-blogs-item [blog]="blog"></tmblog-blogs-item>
                         <md-divider *ngIf="!last" md-inset></md-divider>
                     </ng-template>
                 </td-expansion-panel>
@@ -77,8 +77,8 @@
                             </td-message>
                         </md-list-item>
                     </md-list>
-                    <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
-                         <tmblog-blogs-item [user]="user"></tmblog-blogs-item>
+                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogs">
+                        <tmblog-blogs-item [blog]="blog"></tmblog-blogs-item>
                         <md-divider *ngIf="!last" md-inset></md-divider>
                     </ng-template>
                 </td-expansion-panel>
@@ -110,8 +110,8 @@
                             </td-message>
                         </md-list-item>
                     </md-list>
-                    <ng-template let-user let-last="last" ngFor [ngForOf]="filteredUsers">
-                        <tmblog-blogs-item [user]="user"></tmblog-blogs-item>
+                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogs">
+                        <tmblog-blogs-item [blog]="blog"></tmblog-blogs-item>
                         <md-divider *ngIf="!last" md-inset></md-divider>
                     </ng-template>
                 </td-expansion-panel>

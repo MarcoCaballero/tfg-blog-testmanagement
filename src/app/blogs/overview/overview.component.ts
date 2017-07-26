@@ -5,7 +5,7 @@ import { MdSnackBar } from '@angular/material';
 import { TdLoadingService, TdDialogService, TdMediaService, TdExpansionPanelComponent } from '@covalent/core';
 
 import { BlogService } from '../services/blog.service';
-import { IUser } from '../data/interfaces';
+import { IUser, IBlog } from '../data/interfaces';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -43,8 +43,9 @@ export class BlogsOverviewComponent implements OnInit {
         'MarkDown',
         'Teradata covalent',
     ];
-    users: IUser[];
-    filteredUsers: IUser[];
+
+    blogs: IBlog[];
+    filteredBlogs: IBlog[];
 
     constructor(private _titleService: Title,
         private _loadingService: TdLoadingService,
@@ -59,14 +60,14 @@ export class BlogsOverviewComponent implements OnInit {
         this.load();
     }
 
-    filterUsers(displayName: string = ''): void {
-        this.filteredUsers = this.users.filter((user: IUser) => {
-            (displayName === '') ? this.expPan1.close() : this.expPan1.open();
-            (displayName === '') ? this.expPan2.close() : this.expPan2.open();
-            (displayName === '') ? this.expPan3.close() : this.expPan3.open();
-            return user.displayName.toLowerCase().indexOf(displayName.toLowerCase()) > -1;
+    filterBlogs(title: string = ''): void {
+        this.filteredBlogs = this.blogs.filter((blog: IBlog) => {
+            (title === '') ? this.expPan1.close() : this.expPan1.open();
+            (title === '') ? this.expPan2.close() : this.expPan2.open();
+            (title === '') ? this.expPan3.close() : this.expPan3.open();
+            return blog.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
         });
-        if (this.filteredUsers.length === 0) {
+        if (this.filteredBlogs.length === 0) {
             this.enableFail = true;
         } else {
             this.enableFail = false;
@@ -76,11 +77,11 @@ export class BlogsOverviewComponent implements OnInit {
     async load(): Promise<void> {
         try {
             this._loadingService.register('blogs.overview');
-            this.users = await this._BlogService.staticQuery().toPromise();
+            this.blogs = await this._BlogService.staticQuery2().toPromise();
         } catch (error) {
-            this.users = await this._BlogService.staticQuery().toPromise();
+            this.blogs = await this._BlogService.staticQuery2().toPromise();
         } finally {
-            this.filteredUsers = Object.assign([], this.users);
+            this.filteredBlogs = Object.assign([], this.blogs);
             this._loadingService.resolve('blogs.overview');
         }
     }

@@ -6,11 +6,11 @@ import { Title } from '@angular/platform-browser';
 
 import { TdLoadingService, TdDigitsPipe } from '@covalent/core';
 
-import { BlogService, IUser } from '../blogs';
+import { BlogService, IBlog } from '../blogs';
 
 import { routes, IRoutesObject } from '../shared/routes';
 
-import { ItemsService, ProductsService, AlertsService, WindowRefService } from '../../services';
+import { WindowRefService } from '../../services';
 
 import { multi } from './data';
 
@@ -23,7 +23,7 @@ export interface IStackLogos {
   selector: 'tmblog-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  viewProviders: [ItemsService, ProductsService, AlertsService, WindowRefService],
+  viewProviders: [WindowRefService],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   logos: IStackLogos[] = [
@@ -43,10 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   fabToggle: boolean = false;
 
   constructor(private _titleService: Title,
-    private _itemsService: ItemsService,
     private _BlogService: BlogService,
-    private _alertsService: AlertsService,
-    private _productsService: ProductsService,
     private _loadingService: TdLoadingService,
     private _winService: WindowRefService,
     private _ngzone: NgZone,

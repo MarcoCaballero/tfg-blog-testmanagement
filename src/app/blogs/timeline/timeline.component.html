@@ -1,23 +1,20 @@
 <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
-    <div layout="row" layout-align="start center" class="pad-left-sm pad-right-sm">
-        <span *ngIf="!searchBox.searchVisible" class="push-left-sm">
-                        <span class="md-title">Timeline Blogs</span>
-        </span>
-        <td-search-box #searchBox backIcon="arrow_back" class="push-right-sm tc-blue-700" placeholder="Search here the title...."
-            (searchDebounce)="filterBlogs($event)" flex>
-        </td-search-box>
-    </div>
+    <md-card-title layout="row" layout-align="start center">
+        <span class="md-title">Timeline</span>
+    </md-card-title>
+    <md-card-subtitle>Blog timeline sorted by date.</md-card-subtitle>
+    <md-divider></md-divider>
     <md-divider></md-divider>
     <md-card-content>
         <ng-template tdLoading="blogs.timeline">
             <md-list class="will-load">
-                <div class="md-padding" *ngIf="filteredBlogs?.length === 0" layout="row" layout-align="center center">
+                <div class="md-padding" *ngIf="blogs?.length === 0" layout="row" layout-align="center center">
                     <h3>No users to display.</h3>
                 </div>
                 <td-steps>
-                    <ng-template ngFor [ngForOf]="[1,2,3,4,5,6,7,8,9]">
-                        <td-step label="July, 2017" sublabel="19 Blogs" [disabled]="disabled">
-                            <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogs">
+                    <ng-template let-i="index" let-item ngFor [ngForOf]="filteredBlogsArray">
+                        <td-step *ngIf="filteredBlogsArray[i].blogs?.length > 0" label=" {{item.name}}" sublabel="19 Blogs" [disabled]="disabled ">
+                            <ng-template let-blog let-last="last" ngFor [ngForOf]="item.blogs">
                                 <tmblog-blogs-item [blog]="blog"></tmblog-blogs-item>
                                 <md-divider *ngIf="!last" md-inset></md-divider>
                             </ng-template>

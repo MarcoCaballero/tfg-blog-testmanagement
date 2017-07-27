@@ -1,12 +1,3 @@
-
-export interface IUser {
-    displayName: string;
-    id: string;
-    email: string;
-    created: Date;
-    lastAccess: Date;
-    siteAdmin: number;
-}
 export interface IBlog {
     id: number;
     title: string;
@@ -14,6 +5,13 @@ export interface IBlog {
     subtitle: string;
     created: Date;
     lastAccess: Date;
+    day: number;
+    month: number;
+    year: number;
     projectID: number;
     project: string;
+}
+export interface ITimeBlog {
+    name: string;
+    blogs?: IBlog[];
 }

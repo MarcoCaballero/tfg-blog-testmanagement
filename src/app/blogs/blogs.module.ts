@@ -29,9 +29,9 @@ import { userRoutes } from './blogs.routes';
 
 import { BlogService, USER_PROVIDER, USERS_API } from './services/blog.service';
 
-import { IUser } from './data/interfaces';
+import { IBlog } from './data/interfaces';
 
-export { BlogsComponent, BlogsDetailComponent, BlogService, IUser, USER_PROVIDER, USERS_API };
+export { BlogsComponent, BlogsDetailComponent, BlogService, IBlog, USER_PROVIDER, USERS_API };
 
 @NgModule({
   declarations: [

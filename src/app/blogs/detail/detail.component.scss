@@ -1,3 +1,66 @@
+@import '../../../theme';
+
+/* Variables */
+$primary:       map-get($theme, primary);
+$primary-light: map-get($theme-light, primary-light);
+$accent:        map-get($theme, accent);
+$accent-light:  map-get($theme-light, accent-light);
+$warn:          map-get($theme, warn);
+$warn-light:    map-get($theme-light, warn-light);
+$break-small:   604px;
+$break-small-p1:   318px; //37
+$break-small-p2:   409px; //24
+$break-small-p3:   467px; //14
+$break-small-p4:   609px; //14 && 86px
+
+/* :host /deep/ lets shadowdom style child elements */
+:host /deep/ { }
+
+
+    .center-title {
+        text-align: center;
+    }
+    .center-subtitle {
+        text-align: center;
+        color: rgba(25, 118, 210, 0.71);
+        margin-top: 10px !important;
+    }
+
+    span.md-title {
+        text-align: center;
+        margin: auto;
+        color: black;
+        background: white;
+        width: auto;
+        border: 3px solid #1976d2;
+        padding: 10px;
+        &:hover {
+            color: white;
+            background: #1976d2;
+        }
+    }
+
+    .blog-header {
+        min-height: 150px;
+        min-width: 250px;
+    }
+    .image-header {
+        min-height: 150px!important;
+        min-width: 250px!important;
+        display: block !important;
+        margin: auto;
+    }
+
+    .blog-title {
+        text-align: center;
+    }
+    .blog-date {
+        display: -webkit-flex; /* Safari */
+        -webkit-justify-content: space-around; /* Safari 6.1+ */
+        display: flex;
+        justify-content: space-around;
+    }
+
 
 
 

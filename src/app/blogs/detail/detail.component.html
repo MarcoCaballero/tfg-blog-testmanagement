@@ -1,4 +1,11 @@
-<td-layout-card-over color="primary" cardWidth="85" cardTitle="{{blog?.title}}" cardSubtitle="{{blog?.subtitle}}">
+<td-layout-card-over color="primary" cardWidth="85">
+  <div>
+    <md-card-title class="center-title" layout="row" layout-align="start center">
+      <span class="md-title push-top">{{project}}</span>
+    </md-card-title>
+    <md-card-subtitle class="center-subtitle">{{projectSubtitle}}</md-card-subtitle>
+  </div>
+  <md-divider></md-divider>
   <md-card-content>
     <ng-template tdLoading="blog.id">
       <md-list class="will-load">
@@ -6,21 +13,13 @@
           <h3>No users to display.</h3>
         </div>
         <ng-template let-user let-last="last" ngFor [ngForOf]="filteredBlogs">
-          <md-list-item>
-            <md-icon class="blog-header" md-list-avatar svgIcon="{{blog.imageID}}"></md-icon>
-            <h3 md-line> {{blog.title}}</h3>
+          <md-list-item class="blog-header">
+            <md-icon class="image-header" md-list-icon svgIcon="{{blog.imageID}}"></md-icon>
+          </md-list-item>
+          <md-list-item class="blog-title">
+            <h2 md-line> {{blog.title}}</h2>
             <p md-line> {{blog.subtitle}} </p>
-            <p md-line hide-gt-md class="md-caption"> Created: {{ blog.created | date }} </p>
             <span flex></span>
-            <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
-            <div class="md-caption tc-grey-500" flex-gt-xs="50"> Created: {{ blog.created | date }} </div>
-            <div class="md-caption tc-grey-500" flex-gt-xs="50"> Last updated: {{ blog.lastAccess | timeAgo }} </div>
-        </span>
-            <span>
-            <button md-icon-button  [routerLink]="['/blogs', blog.project, blog.id]">
-            <md-icon class="go-into">keyboard_arrow_right</md-icon>
-            </button>
-        </span>
           </md-list-item>
           <md-divider *ngIf="!last" md-inset></md-divider>
         </ng-template>
@@ -28,7 +27,14 @@
     </ng-template>
   </md-card-content>
   <md-divider></md-divider>
-  <md-card-actions>
-    <button md-button color="accent" class="text-upper">Edit</button>
+  <md-card-actions class="blog-date">
+    <!-- actions -->
+    <md-list-item class="created">
+      <p class="md-caption"> Created: {{ blog.created | date }} </p>
+    </md-list-item>
+
+    <md-list-item class="updated">
+      <p class="md-caption"> Last updated: {{ blog.lastAccess | timeAgo }} </p>
+    </md-list-item>
   </md-card-actions>
 </td-layout-card-over>

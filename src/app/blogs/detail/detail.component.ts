@@ -17,13 +17,17 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./detail.component.scss'],
 })
 export class BlogsDetailComponent implements OnInit {
-
+  TM_SUBTITLE: string = 'Web application to manage manually tests';
+  TMBLOG_SUBTITLE: string = 'SPA to manage the blogs created for the TFG project (BSc FYP)';
+  PLUG_SUBTITLE: string = 'Java application to plug in Elastest with Testlink';
   blogs: IBlog[];
   filteredBlogs: IBlog[];
   loading: boolean = true;
   blog: IBlog;
   id: number;
   project: string;
+  projectSubtitle: string;
+
 
   constructor(private _BlogService: BlogService,
     private _router: Router,
@@ -45,6 +49,10 @@ export class BlogsDetailComponent implements OnInit {
       this.project = params.project;
       this.load();
     });
+    this.projectSubtitle = (this.project === 'TestManagement') ? this.TM_SUBTITLE : this.projectSubtitle;
+    this.projectSubtitle = (this.project === 'Plugin') ? this.PLUG_SUBTITLE : this.projectSubtitle;
+    this.projectSubtitle = (this.project === 'Plugin') ? this.PLUG_SUBTITLE : this.projectSubtitle;
+
   }
 
   async load(): Promise<void> {

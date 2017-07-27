@@ -12,7 +12,7 @@
     <md-card-content>
         <ng-template tdLoading="blogs.overview">
             <md-list class="will-load">
-                <div class="md-padding" *ngIf="users?.length === 0" layout="row" layout-align="center center">
+                <div class="md-padding" *ngIf="blogs?.length === 0" layout="row" layout-align="center center">
                     <h3>No users to display.</h3>
                 </div>
                 <!-- first panel -->
@@ -36,14 +36,14 @@
                             </md-list-item>
                         </md-list>
                     </td-expansion-summary>
-                    <md-list *ngIf="enableFail" style="padding: 15px 4px 15px 4px;">
+                    <md-list *ngIf="enableFailOne" style="padding: 15px 4px 15px 4px;">
                         <md-list-item>
                             <td-message label="Not found! Try with another title ..." class="bgc-grey-200 tc-blue-700" icon="error" style="min-width: 100%;">
 
                             </td-message>
                         </md-list-item>
                     </md-list>
-                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogs">
+                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogsOne">
                         <tmblog-blogs-item [blog]="blog"></tmblog-blogs-item>
                         <md-divider *ngIf="!last" md-inset></md-divider>
                     </ng-template>
@@ -70,14 +70,14 @@
                             </md-list-item>
                         </md-list>
                     </td-expansion-summary>
-                    <md-list *ngIf="enableFail" style="padding: 15px 4px 15px 4px;">
+                    <md-list *ngIf="enableFailTwo" style="padding: 15px 4px 15px 4px;">
                         <md-list-item>
                             <td-message label="Not found! Try with another title ..." class="bgc-grey-200 tc-blue-700" icon="error" style="min-width: 100%;">
 
                             </td-message>
                         </md-list-item>
                     </md-list>
-                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogs">
+                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogsTwo">
                         <tmblog-blogs-item [blog]="blog"></tmblog-blogs-item>
                         <md-divider *ngIf="!last" md-inset></md-divider>
                     </ng-template>
@@ -104,13 +104,13 @@
                             </md-list-item>
                         </md-list>
                     </td-expansion-summary>
-                    <md-list *ngIf="enableFail" style="padding: 15px 4px 15px 4px;">
+                    <md-list *ngIf="enableFailThree" style="padding: 15px 4px 15px 4px;">
                         <md-list-item>
                             <td-message label="Not found !! Try with another title ..." class="bgc-grey-200 tc-blue-700" icon="error" style="min-width: 100%;">
                             </td-message>
                         </md-list-item>
                     </md-list>
-                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogs">
+                    <ng-template let-blog let-last="last" ngFor [ngForOf]="filteredBlogsThree">
                         <tmblog-blogs-item [blog]="blog"></tmblog-blogs-item>
                         <md-divider *ngIf="!last" md-inset></md-divider>
                     </ng-template>

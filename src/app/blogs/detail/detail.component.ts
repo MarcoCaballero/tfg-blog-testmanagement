@@ -51,9 +51,9 @@ export class BlogsDetailComponent implements OnInit {
     try {
       this._loadingService.register('loadingBlog');
       this.loading = true;
-      this.blogs = await this._BlogService.staticQuery2().toPromise();
+      this.blogs = await this._BlogService.staticQuery().toPromise();
     } catch (error) {
-      this.blogs = await this._BlogService.staticQuery2().toPromise();
+      this.blogs = await this._BlogService.staticQuery().toPromise();
     } finally {
       this.filteredBlogs = Object.assign([], this.blogs);
       this.filteredBlogs = this.blogs.filter((blog: IBlog) => {

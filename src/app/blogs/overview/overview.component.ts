@@ -5,7 +5,7 @@ import { MdSnackBar } from '@angular/material';
 import { TdLoadingService, TdDialogService, TdMediaService, TdExpansionPanelComponent } from '@covalent/core';
 
 import { BlogService } from '../services/blog.service';
-import { IUser, IBlog } from '../data/interfaces';
+import { IBlog } from '../data/interfaces';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -21,7 +21,6 @@ export class BlogsOverviewComponent implements OnInit {
     disabled: boolean = false;
     chipAddition: boolean = false;
     chipRemoval: boolean = false;
-    enableFail: boolean = false;
 
     f1Model: string[] = [
         'Angular',
@@ -45,7 +44,17 @@ export class BlogsOverviewComponent implements OnInit {
     ];
 
     blogs: IBlog[];
-    filteredBlogs: IBlog[];
+    blogsOne: IBlog[];
+    blogsTwo: IBlog[];
+    blogsThree: IBlog[];
+    filteredBlogsOne: IBlog[];
+    filteredBlogsTwo: IBlog[];
+    filteredBlogsThree: IBlog[];
+    enableFailOne: boolean = false;
+    enableFailTwo: boolean = false;
+    enableFailThree: boolean = false;
+
+
 
     constructor(private _titleService: Title,
         private _loadingService: TdLoadingService,
@@ -61,28 +70,41 @@ export class BlogsOverviewComponent implements OnInit {
     }
 
     filterBlogs(title: string = ''): void {
-        this.filteredBlogs = this.blogs.filter((blog: IBlog) => {
+        this.filteredBlogsOne = this.blogsOne.filter((blog1: IBlog) => {
             (title === '') ? this.expPan1.close() : this.expPan1.open();
-            (title === '') ? this.expPan2.close() : this.expPan2.open();
-            (title === '') ? this.expPan3.close() : this.expPan3.open();
-            return blog.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
+            return blog1.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
         });
-        if (this.filteredBlogs.length === 0) {
-            this.enableFail = true;
-        } else {
-            this.enableFail = false;
-        }
+        this.filteredBlogsTwo = this.blogsTwo.filter((blog2: IBlog) => {
+            (title === '') ? this.expPan2.close() : this.expPan2.open();
+            return blog2.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
+        });
+        this.filteredBlogsThree = this.blogsThree.filter((blog3: IBlog) => {
+            (title === '') ? this.expPan3.close() : this.expPan3.open();
+            return blog3.title.toLowerCase().indexOf(title.toLowerCase()) > -1;
+        });
+
+        this.enableFailOne = (this.filteredBlogsOne.length === 0);
+        this.enableFailTwo = (this.filteredBlogsTwo.length === 0);
+        this.enableFailThree = (this.filteredBlogsThree.length === 0);
     }
 
     async load(): Promise<void> {
         try {
             this._loadingService.register('blogs.overview');
-            this.blogs = await this._BlogService.staticQuery2().toPromise();
+            this.blogs = await this._BlogService.getAll().toPromise();
+            this.blogsOne = await this._BlogService.getByProjectId(0).toPromise();
+            this.blogsTwo = await this._BlogService.getByProjectId(1).toPromise();
+            this.blogsThree = await this._BlogService.getByProjectId(2).toPromise();
         } catch (error) {
-            this.blogs = await this._BlogService.staticQuery2().toPromise();
+            this.blogsOne = await this._BlogService.getByProjectId(0).toPromise();
+            this.blogsTwo = await this._BlogService.getByProjectId(1).toPromise();
+            this.blogsThree = await this._BlogService.getByProjectId(2).toPromise();
         } finally {
-            this.filteredBlogs = Object.assign([], this.blogs);
+            this.filteredBlogsOne = Object.assign([], this.blogsOne);
+            this.filteredBlogsTwo = Object.assign([], this.blogsTwo);
+            this.filteredBlogsThree = Object.assign([], this.blogsThree);
             this._loadingService.resolve('blogs.overview');
         }
     }
+
 }
